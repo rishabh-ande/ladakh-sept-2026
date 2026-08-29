@@ -9,7 +9,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
-
 <title>The Siachen Loop</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -181,15 +180,62 @@ footer{margin-top:24px;padding-top:22px;border-top:1px solid var(--line);
 .ridge-div .ridge{height:70px}
 header.mast .ridge{height:104px}
 
+
+/* ---------------- mobile ---------------- */
 @media (max-width:680px){
-  body{font-size:16px}
-  .day{grid-template-columns:1fr;gap:0}
-  .dnum{font-size:64px;margin:0 0 16px -4px;display:flex;align-items:baseline;gap:14px}
-  .dnum small{margin-top:0;margin-left:0}
-  .mast-in{padding-top:38px}
-  h2 + .lede{font-size:27px}
-  .rb{grid-template-columns:1fr}
+  .wrap{padding:0 16px 64px}
+  .mast-in{padding:30px 16px 0}
+  .kicker{font-size:10px;letter-spacing:.14em;margin-bottom:12px}
+  h1{font-size:clamp(44px,13vw,72px)}
+  .sub{font-size:17px;line-height:1.45;margin-bottom:26px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{padding:11px 12px 13px;border-bottom:1px solid #34302A}
+  .stat:nth-child(2n){border-right:none}
+  .stat b{font-size:21px}
+  .stat span{font-size:9px;letter-spacing:.09em;margin-top:4px}
+
+  section{margin-top:44px}
+  h2{font-size:13px;letter-spacing:.16em}
+  h2 + .lede{font-size:25px;margin:13px 0 20px}
+  .slab{padding:18px 17px}
+  .slab h4{font-size:15px}
+  .day{padding:26px 0 30px}
+  .dbody h3{font-size:25px}
+  .route{font-size:11.5px;line-height:1.85;padding:10px 11px}
+
+  /* figures: pan a legibly-sized drawing instead of squinting at a shrunken one */
+  figure{padding:12px 12px 0;margin-bottom:30px}
+  figure svg{min-width:860px}
+  .figscroll{overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .panhint{display:block}
+  figcaption{font-size:13.5px}
+  .legend{font-size:10.5px;gap:7px 15px}
+
+  /* tables stop scrolling sideways and become stacked cards */
+  .tscroll{overflow-x:visible;border:none;margin-bottom:20px}
+  table{min-width:0;background:none;display:block}
+  thead{display:none}
+  tbody{display:block}
+  tr{display:block;background:var(--surface);border:1px solid var(--line);
+     padding:13px 15px 14px;margin-bottom:10px}
+  td{display:block;width:auto;border-bottom:none;padding:5px 0;font-size:15px;line-height:1.5}
+  td:first-child{font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:20px;
+     text-transform:uppercase;letter-spacing:.03em;color:var(--ink);white-space:normal;
+     padding:0 0 9px;margin-bottom:9px;border-bottom:1px solid var(--hair)}
+  td.n{white-space:normal}
+  td[data-l]::before{content:attr(data-l);display:block;font-family:"IBM Plex Mono",monospace;
+     font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+  td:empty{display:none}
 }
+@media (max-width:400px){
+  h1{font-size:42px}
+  .stats{grid-template-columns:1fr}
+  .stat:nth-child(n){border-right:none}
+  .dbody h3{font-size:22px}
+}
+.panhint{display:none;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin:9px 0 0;padding:0}
+
 @media print{body{background:#fff;color:#000}figure,.slab,.tscroll,.day{break-inside:avoid}
   header.mast{background:#fff;color:#000}h1,.stat b{color:#000}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -221,13 +267,13 @@ header.mast .ridge{height:104px}
     <table>
       <thead><tr><th>Night</th><th>Where</th><th>Status</th></tr></thead>
       <tbody>
-        <tr><td class="n">4 Sep</td><td>Thoise</td><td><strong>Held</strong></td></tr>
-        <tr><td class="n hot">5 Sep</td><td>Sumur</td><td class="hot"><strong>Book.</strong> Cancelled, needs rebooking</td></tr>
-        <tr><td class="n hot">6 Sep</td><td>Sumur</td><td class="hot"><strong>Book.</strong> Cancelled, needs rebooking</td></tr>
-        <tr><td class="n">7 Sep</td><td>Pangong &#8212; Spangmik</td><td><strong>Held</strong></td></tr>
-        <tr><td class="n">8 Sep</td><td>Hanle</td><td><strong>Held</strong></td></tr>
-        <tr><td class="n hot">9 Sep</td><td>Hanle, second night</td><td class="hot"><strong>Book this one first.</strong> A few dozen beds in the village and no alternative within 100 km</td></tr>
-        <tr><td class="n">10&#8211;12 Sep</td><td>Leh</td><td>Easy, book anything</td></tr>
+        <tr><td class="n">4 Sep</td><td data-l="Where">Thoise</td><td data-l="Status"><strong>Held</strong></td></tr>
+        <tr><td class="n hot">5 Sep</td><td data-l="Where">Sumur</td><td class="hot" data-l="Status"><strong>Book.</strong> Cancelled, needs rebooking</td></tr>
+        <tr><td class="n hot">6 Sep</td><td data-l="Where">Sumur</td><td class="hot" data-l="Status"><strong>Book.</strong> Cancelled, needs rebooking</td></tr>
+        <tr><td class="n">7 Sep</td><td data-l="Where">Pangong &#8212; Spangmik</td><td data-l="Status"><strong>Held</strong></td></tr>
+        <tr><td class="n">8 Sep</td><td data-l="Where">Hanle</td><td data-l="Status"><strong>Held</strong></td></tr>
+        <tr><td class="n hot">9 Sep</td><td data-l="Where">Hanle, second night</td><td class="hot" data-l="Status"><strong>Book this one first.</strong> A few dozen beds in the village and no alternative within 100 km</td></tr>
+        <tr><td class="n">10&#8211;12 Sep</td><td data-l="Where">Leh</td><td data-l="Status">Easy, book anything</td></tr>
       </tbody>
     </table>
   </div>
@@ -410,6 +456,7 @@ header.mast .ridge{height:104px}
   <g stroke="var(--muted)" stroke-width="1.4" fill="none"><path d="M854,104 L854,62"/><path d="M848,72 L854,60 L860,72"/><path d="M60,738 L60,746 M180,738 L180,746 M60,742 L180,742"/></g><text x="854" y="120" font-size="10" fill="var(--muted)" text-anchor="middle">N</text><text x="120" y="760" font-size="10" fill="var(--muted)" text-anchor="middle">50 km straight-line</text>
 </svg>
    </div>
+    <p class="panhint">Swipe the figure sideways to pan &#8594;</p>
     <div class="legend">
       <span><i class="sw"></i>onward leg</span>
       <span><i class="sw dash"></i>out &amp; back, same day</span>
@@ -491,6 +538,7 @@ header.mast .ridge{height:104px}
       </g>
     </svg>
    </div>
+    <p class="panhint">Swipe the figure sideways to pan &#8594;</p>
     <figcaption>The amber line spikes; the teal line creeps. That gap is the whole safety argument. <b>You touch 5,359 m on the 4th but sleep 450 m lower than you did in Leh</b>, and your sleeping altitude never climbs more than about 1,100 m in a single step. Three low nights in Nubra and then two at Hanle mean Umling La is ridden by a body that has had a week to adapt, not a fresh one. This plan also never sleeps above 4,250 m.</figcaption>
   </figure>
 </section>
@@ -805,13 +853,13 @@ header.mast .ridge{height:104px}
     <table>
       <thead><tr><th>Date</th><th>Wheels rolling</th><th>Why</th></tr></thead>
       <tbody>
-        <tr><td class="n">2 Sep</td><td class="n">&#8212;</td><td>Lights out 22:00. The only early night, and it is not negotiable.</td></tr>
-        <tr><td class="n">3, 4, 5, 8, 12 Sep</td><td class="n">08:00</td><td>Matches your rhythm exactly. In by 18:00&#8211;19:00, dinner, bed by midnight.</td></tr>
-        <tr><td class="n">6 Sep</td><td class="n">07:30</td><td>Siachen. Short day, but the checks at Partapur are slow and you want the base in morning light.</td></tr>
-        <tr><td class="n hot">7 Sep</td><td class="n hot">07:00</td><td><strong>The Agham&#8211;Shyok nallahs flood from about 13:00.</strong> This one costs you an hour of sleep and buys you a safe crossing.</td></tr>
-        <tr><td class="n hot">9 Sep</td><td class="n hot">06:30</td><td><strong>Umling La.</strong> Afternoon wind at 5,800 m, and 146 km with nothing on it.</td></tr>
-        <tr><td class="n hot">10 Sep</td><td class="n hot">07:00</td><td>250 km, the longest day &#8212; but all tarmac, and Chumathang is a proper halfway stop.</td></tr>
-        <tr><td class="n">11 Sep</td><td class="n">whenever</td><td>Sleep in. You have earned it and there is nowhere to be.</td></tr>
+        <tr><td class="n">2 Sep</td><td class="n" data-l="Wheels rolling">&#8212;</td><td data-l="Why">Lights out 22:00. The only early night, and it is not negotiable.</td></tr>
+        <tr><td class="n">3, 4, 5, 8, 12 Sep</td><td class="n" data-l="Wheels rolling">08:00</td><td data-l="Why">Matches your rhythm exactly. In by 18:00&#8211;19:00, dinner, bed by midnight.</td></tr>
+        <tr><td class="n">6 Sep</td><td class="n" data-l="Wheels rolling">07:30</td><td data-l="Why">Siachen. Short day, but the checks at Partapur are slow and you want the base in morning light.</td></tr>
+        <tr><td class="n hot">7 Sep</td><td class="n hot" data-l="Wheels rolling">07:00</td><td data-l="Why"><strong>The Agham&#8211;Shyok nallahs flood from about 13:00.</strong> This one costs you an hour of sleep and buys you a safe crossing.</td></tr>
+        <tr><td class="n hot">9 Sep</td><td class="n hot" data-l="Wheels rolling">06:30</td><td data-l="Why"><strong>Umling La.</strong> Afternoon wind at 5,800 m, and 146 km with nothing on it.</td></tr>
+        <tr><td class="n hot">10 Sep</td><td class="n hot" data-l="Wheels rolling">07:00</td><td data-l="Why">250 km, the longest day &#8212; but all tarmac, and Chumathang is a proper halfway stop.</td></tr>
+        <tr><td class="n">11 Sep</td><td class="n" data-l="Wheels rolling">whenever</td><td data-l="Why">Sleep in. You have earned it and there is nowhere to be.</td></tr>
       </tbody>
     </table>
   </div>
@@ -824,10 +872,10 @@ header.mast .ridge{height:104px}
     <table>
       <thead><tr><th>Pass</th><th>Altitude</th><th>Day</th><th>Surface</th></tr></thead>
       <tbody>
-        <tr><td><strong>Khardung La</strong></td><td class="n">5,359 m</td><td class="n">4 Sep</td><td>Tarmac, broken in patches near the top</td></tr>
-        <tr><td><strong>Tsaga La</strong></td><td class="n">4,660 m</td><td class="n">8 Sep</td><td>Gravel up, tarmac down the far side</td></tr>
-        <tr><td><strong>Photi La</strong></td><td class="n">5,524 m</td><td class="n">9 Sep</td><td>Mixed tarmac and dirt</td></tr>
-        <tr><td class="hot"><strong>Umling La</strong></td><td class="n hot">5,798 m</td><td class="n">9 Sep</td><td>Excellent BRO tarmac, savagely steep and thin</td></tr>
+        <tr><td><strong>Khardung La</strong></td><td class="n" data-l="Altitude">5,359 m</td><td class="n" data-l="Day">4 Sep</td><td data-l="Surface">Tarmac, broken in patches near the top</td></tr>
+        <tr><td><strong>Tsaga La</strong></td><td class="n" data-l="Altitude">4,660 m</td><td class="n" data-l="Day">8 Sep</td><td data-l="Surface">Gravel up, tarmac down the far side</td></tr>
+        <tr><td><strong>Photi La</strong></td><td class="n" data-l="Altitude">5,524 m</td><td class="n" data-l="Day">9 Sep</td><td data-l="Surface">Mixed tarmac and dirt</td></tr>
+        <tr><td class="hot"><strong>Umling La</strong></td><td class="n hot" data-l="Altitude">5,798 m</td><td class="n" data-l="Day">9 Sep</td><td data-l="Surface">Excellent BRO tarmac, savagely steep and thin</td></tr>
         
         
         
@@ -844,12 +892,12 @@ header.mast .ridge{height:104px}
     <table>
       <thead><tr><th>Leg</th><th>Fill at</th><th>Longest stretch with nothing</th></tr></thead>
       <tbody>
-        <tr><td>Leh &#8594; Nubra <span class="n">(4 Sep)</span></td><td>Leh, then the Khalsar pump</td><td class="n">85 km</td></tr>
-        <tr><td>Nubra north arm <span class="n">(6 Sep)</span></td><td>Khalsar or Sumur before you set off</td><td class="n">130 km round trip, nothing past Sumur</td></tr>
-        <tr><td>Sumur &#8594; Pangong <span class="n">(7 Sep)</span></td><td>Khalsar &#8212; brim plus every jerry can</td><td class="n">105 km to loose petrol at Durbuk</td></tr>
-        <tr><td>Pangong &#8594; Hanle <span class="n">(8 Sep)</span></td><td>Loose petrol at Spangmik or Merak</td><td class="n">165 km</td></tr>
-        <tr><td class="hot">Hanle &#8594; Umling La &#8594; Hanle <span class="n">(9 Sep)</span></td><td>Hanle loose petrol, plus full cans</td><td class="n hot">146 km, absolutely nothing on it</td></tr>
-        <tr><td class="hot">Hanle &#8594; Leh <span class="n">(10 Sep)</span></td><td><strong>Nyoma pump</strong> at km 70</td><td class="n hot">155 km to the Karu pump</td></tr>
+        <tr><td>Leh &#8594; Nubra <span class="n">(4 Sep)</span></td><td data-l="Fill at">Leh, then the Khalsar pump</td><td class="n" data-l="Longest stretch with nothing">85 km</td></tr>
+        <tr><td>Nubra north arm <span class="n">(6 Sep)</span></td><td data-l="Fill at">Khalsar or Sumur before you set off</td><td class="n" data-l="Longest stretch with nothing">130 km round trip, nothing past Sumur</td></tr>
+        <tr><td>Sumur &#8594; Pangong <span class="n">(7 Sep)</span></td><td data-l="Fill at">Khalsar &#8212; brim plus every jerry can</td><td class="n" data-l="Longest stretch with nothing">105 km to loose petrol at Durbuk</td></tr>
+        <tr><td>Pangong &#8594; Hanle <span class="n">(8 Sep)</span></td><td data-l="Fill at">Loose petrol at Spangmik or Merak</td><td class="n" data-l="Longest stretch with nothing">165 km</td></tr>
+        <tr><td class="hot">Hanle &#8594; Umling La &#8594; Hanle <span class="n">(9 Sep)</span></td><td data-l="Fill at">Hanle loose petrol, plus full cans</td><td class="n hot" data-l="Longest stretch with nothing">146 km, absolutely nothing on it</td></tr>
+        <tr><td class="hot">Hanle &#8594; Leh <span class="n">(10 Sep)</span></td><td data-l="Fill at"><strong>Nyoma pump</strong> at km 70</td><td class="n hot" data-l="Longest stretch with nothing">155 km to the Karu pump</td></tr>
       </tbody>
     </table>
   </div>
@@ -945,13 +993,13 @@ header.mast .ridge{height:104px}
     <table>
       <thead><tr><th>Item</th><th>Per person</th><th>Basis</th></tr></thead>
       <tbody>
-        <tr><td>Himalayan 450, 11 days</td><td class="n">&#8377;30,000</td><td>One bike each at &#8377;2,800/day</td></tr>
-        <tr><td>Fuel</td><td class="n">&#8377;6,000</td><td>About 1,645 km at 30 kmpl, &#8377;110/litre</td></tr>
-        <tr><td>Stays</td><td class="n">&#8377;15,000</td><td>11 nights, five people across two or three rooms</td></tr>
-        <tr><td>Food</td><td class="n">&#8377;14,000</td><td>12 days at &#8377;1,200</td></tr>
-        <tr><td>Permit and entry fees</td><td class="n">&#8377;1,500</td><td>Environment fee plus monastery tickets</td></tr>
-        <tr><td>Oxygen, medicines, spares, repairs, tips</td><td class="n">&#8377;5,000</td><td>Contingency, and you will use some of it</td></tr>
-        <tr><td><strong>Total</strong></td><td class="n"><strong>&#8377;70,000&#8211;80,000</strong></td><td>Add flights</td></tr>
+        <tr><td>Himalayan 450, 11 days</td><td class="n" data-l="Per person">&#8377;30,000</td><td data-l="Basis">One bike each at &#8377;2,800/day</td></tr>
+        <tr><td>Fuel</td><td class="n" data-l="Per person">&#8377;6,000</td><td data-l="Basis">About 1,645 km at 30 kmpl, &#8377;110/litre</td></tr>
+        <tr><td>Stays</td><td class="n" data-l="Per person">&#8377;15,000</td><td data-l="Basis">11 nights, five people across two or three rooms</td></tr>
+        <tr><td>Food</td><td class="n" data-l="Per person">&#8377;14,000</td><td data-l="Basis">12 days at &#8377;1,200</td></tr>
+        <tr><td>Permit and entry fees</td><td class="n" data-l="Per person">&#8377;1,500</td><td data-l="Basis">Environment fee plus monastery tickets</td></tr>
+        <tr><td>Oxygen, medicines, spares, repairs, tips</td><td class="n" data-l="Per person">&#8377;5,000</td><td data-l="Basis">Contingency, and you will use some of it</td></tr>
+        <tr><td><strong>Total</strong></td><td class="n" data-l="Per person"><strong>&#8377;70,000&#8211;80,000</strong></td><td data-l="Basis">Add flights</td></tr>
       </tbody>
     </table>
   </div>
@@ -964,11 +1012,11 @@ header.mast .ridge{height:104px}
     <table>
       <thead><tr><th>What you miss</th><th>Why it did not fit</th></tr></thead>
       <tbody>
-        <tr><td class="hot"><strong>Tso Moriri, Tso Kar and Startsapuk Tso</strong>, with Polokongka La and Tanglang La</td><td class="hot">This is what the Siachen day costs you. All three lakes and both passes are reachable from Leh on any future trip, on ordinary roads, without anyone's help.</td></tr>
-        <tr><td><strong>Kargil, Drass, and all of Zanskar</strong> &#8212; Padum, Phugtal, Rangdum, Penzila</td><td>Its own six-day trip. Squeezing it in would cost you the eastern lakes and Umling La both.</td></tr>
-        <tr><td><strong>Dah and Hanu</strong> &#8212; the Brokpa villages &#8212; and Batalik</td><td>320 km round trip from Leh with nothing else on the way.</td></tr>
-        <tr><td><strong>Chang La, Wari La and Tanglang La</strong></td><td>A consequence of entering Pangong up the Shyok, leaving via Chushul, and coming home down the Indus. All three are day rides from Leh. If you want one back, Leh &#8594; Rumtse &#8594; Tanglang La &#8594; Tso Kar and return is about 330 km of mostly tarmac and would fit the 12th instead of Lamayuru.</td></tr>
-        <tr><td><strong>Markha valley trek, Zanskar rafting</strong></td><td>Different trip entirely. You are on bikes.</td></tr>
+        <tr><td class="hot"><strong>Tso Moriri, Tso Kar and Startsapuk Tso</strong>, with Polokongka La and Tanglang La</td><td class="hot" data-l="Why it did not fit">This is what the Siachen day costs you. All three lakes and both passes are reachable from Leh on any future trip, on ordinary roads, without anyone's help.</td></tr>
+        <tr><td><strong>Kargil, Drass, and all of Zanskar</strong> &#8212; Padum, Phugtal, Rangdum, Penzila</td><td data-l="Why it did not fit">Its own six-day trip. Squeezing it in would cost you the eastern lakes and Umling La both.</td></tr>
+        <tr><td><strong>Dah and Hanu</strong> &#8212; the Brokpa villages &#8212; and Batalik</td><td data-l="Why it did not fit">320 km round trip from Leh with nothing else on the way.</td></tr>
+        <tr><td><strong>Chang La, Wari La and Tanglang La</strong></td><td data-l="Why it did not fit">A consequence of entering Pangong up the Shyok, leaving via Chushul, and coming home down the Indus. All three are day rides from Leh. If you want one back, Leh &#8594; Rumtse &#8594; Tanglang La &#8594; Tso Kar and return is about 330 km of mostly tarmac and would fit the 12th instead of Lamayuru.</td></tr>
+        <tr><td><strong>Markha valley trek, Zanskar rafting</strong></td><td data-l="Why it did not fit">Different trip entirely. You are on bikes.</td></tr>
       </tbody>
     </table>
   </div>
@@ -993,7 +1041,6 @@ header.mast .ridge{height:104px}
 </footer>
 
 </div>
-
 
 <script>
 if ("serviceWorker" in navigator) {

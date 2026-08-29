@@ -178,15 +178,62 @@ footer{margin-top:24px;padding-top:22px;border-top:1px solid var(--line);
 .ridge-div .ridge{height:70px}
 header.mast .ridge{height:104px}
 
+/* ---------------- mobile ---------------- */
 @media (max-width:680px){
-  body{font-size:16px}
-  .day{grid-template-columns:1fr;gap:0}
-  .dnum{font-size:64px;margin:0 0 16px -4px;display:flex;align-items:baseline;gap:14px}
-  .dnum small{margin-top:0;margin-left:0}
-  .mast-in{padding-top:38px}
-  h2 + .lede{font-size:27px}
-  .rb{grid-template-columns:1fr}
+  .wrap{padding:0 16px 64px}
+  .mast-in{padding:30px 16px 0}
+  .kicker{font-size:10px;letter-spacing:.14em;margin-bottom:12px}
+  h1{font-size:clamp(44px,13vw,72px)}
+  .sub{font-size:17px;line-height:1.45;margin-bottom:26px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{padding:11px 12px 13px;border-bottom:1px solid #34302A}
+  .stat:nth-child(2n){border-right:none}
+  .stat b{font-size:21px}
+  .stat span{font-size:9px;letter-spacing:.09em;margin-top:4px}
+
+  section{margin-top:44px}
+  h2{font-size:13px;letter-spacing:.16em}
+  h2 + .lede{font-size:25px;margin:13px 0 20px}
+  .slab{padding:18px 17px}
+  .slab h4{font-size:15px}
+  .day{padding:26px 0 30px}
+  .dbody h3{font-size:25px}
+  .route{font-size:11.5px;line-height:1.85;padding:10px 11px}
+
+  /* figures: pan a legibly-sized drawing instead of squinting at a shrunken one */
+  figure{padding:12px 12px 0;margin-bottom:30px}
+  figure svg{min-width:860px}
+  .figscroll{overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+  .panhint{display:block}
+  figcaption{font-size:13.5px}
+  .legend{font-size:10.5px;gap:7px 15px}
+
+  /* tables stop scrolling sideways and become stacked cards */
+  .tscroll{overflow-x:visible;border:none;margin-bottom:20px}
+  table{min-width:0;background:none;display:block}
+  thead{display:none}
+  tbody{display:block}
+  tr{display:block;background:var(--surface);border:1px solid var(--line);
+     padding:13px 15px 14px;margin-bottom:10px}
+  td{display:block;width:auto;border-bottom:none;padding:5px 0;font-size:15px;line-height:1.5}
+  td:first-child{font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:20px;
+     text-transform:uppercase;letter-spacing:.03em;color:var(--ink);white-space:normal;
+     padding:0 0 9px;margin-bottom:9px;border-bottom:1px solid var(--hair)}
+  td.n{white-space:normal}
+  td[data-l]::before{content:attr(data-l);display:block;font-family:"IBM Plex Mono",monospace;
+     font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+  td:empty{display:none}
 }
+@media (max-width:400px){
+  h1{font-size:42px}
+  .stats{grid-template-columns:1fr}
+  .stat:nth-child(n){border-right:none}
+  .dbody h3{font-size:22px}
+}
+.panhint{display:none;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin:9px 0 0;padding:0}
+
+
 @media print{body{background:#fff;color:#000}figure,.slab,.tscroll,.day{break-inside:avoid}
   header.mast{background:#fff;color:#000}h1,.stat b{color:#000}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
