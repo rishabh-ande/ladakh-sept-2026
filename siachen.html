@@ -168,6 +168,9 @@ footer{margin-top:24px;padding-top:22px;border-top:1px solid var(--line);
   font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);letter-spacing:.04em;line-height:1.8}
 
 
+.sw.ext{border-top:3px dashed var(--danger)}
+.fuelk{width:11px;height:11px;background:var(--water);flex:none;transform:rotate(45deg)}
+.fuelk.hollow{background:none;border:1.6px solid var(--water)}
 .ridge-div{position:relative;left:50%;right:50%;width:100vw;margin:64px -50vw 34px;line-height:0}
 .ridge-div .ridge{height:70px}
 header.mast .ridge{height:104px}
@@ -230,195 +233,189 @@ header.mast .ridge{height:104px}
   <p class="lede">Where you actually go, and how far apart it all is.</p>
   <figure>
    <div class="figscroll">
-    <svg viewBox="0 0 880 745" role="img" aria-label="Schematic geographic map of Ladakh showing the eleven-day motorcycle loop from Leh north over Khardung La to Nubra and Turtuk, east down the Shyok valley to Pangong Tso, north up the Nubra arm to Siachen Base Camp, east down the Shyok valley to Pangong Tso, south through Chushul and Tsaga La to Hanle, out and back to Umling La, then home down the Indus through Chumathang to Leh, with road distances in kilometres marked on each leg.">
-      <defs>
-        <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-          <path d="M0,1 L9,5 L0,9 z" fill="var(--amber)"/>
-        </marker>
-      </defs>
-
-      <!-- rivers: the roads exist because these do -->
-      <g fill="none" stroke="var(--teal)" stroke-width="2.2" opacity=".42" stroke-linecap="round">
-        <path d="M110,84 L126,92 L200,120 L295,165 L313,170 L339,183 L378,204 L456,222 L482,300"/>
-        <path d="M573,495 L534,477 L470,420 L400,375 L365,352 L352,313 L342,300 L321,271 L253,266 L217,256 L160,248 L113,240"/>
-      </g>
-      <text x="150" y="156" class="mono" font-size="9.5" fill="var(--teal)" letter-spacing="1.4" text-anchor="middle" transform="rotate(21 150 156)">SHYOK</text>
-      <text x="394" y="340" class="mono" font-size="9.5" fill="var(--teal)" letter-spacing="1.4">INDUS</text>
-
-      <!-- lakes -->
-      <g stroke="var(--teal)" fill="none" stroke-linecap="round" opacity=".72">
-        <path d="M552,314 L573,326 L599,347 L625,365 L651,378 L706,404" stroke-width="10"/>
-      </g>
-
-      <!-- ONWARD ROUTE (solid) -->
-      <g fill="none" stroke="var(--amber)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
-        <path d="M321,271 L326,240 L339,183 L313,170 L295,165 L256,148"/>
-        <path d="M256,148 L295,165 L313,170 L339,183 L334,144"/>
-        <path d="M334,144 L339,183 L378,204 L456,222 L482,300 L474,308 L573,326 L599,347"/>
-        <path d="M599,347 L625,365 L651,378 L599,417 L651,482 L638,521 L690,628"/>
-        <path d="M690,628 L638,521 L599,521 L573,495 L534,477 L470,420 L400,375 L365,352 L352,313 L342,300 L321,271" marker-end="url(#ar)"/>
-      </g>
-      <!-- OUT AND BACK (dashed) -->
-      <g fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-dasharray="7 5" stroke-linejoin="round" stroke-linecap="round">
-        <path d="M256,148 L200,120 L126,92 L110,84"/>
-        <path d="M334,144 L313,110 L295,79 L274,40"/>
-        <path d="M321,271 L253,266 L240,256 L217,256 L160,248 L113,240"/>
-        <path d="M240,256 L230,246 L222,235"/>
-        <path d="M321,271 L331,293 L341,309 L348,340"/>
-      </g>
-      <!-- Umling spur: the extreme leg -->
-      <path d="M690,628 L729,651 L768,677" fill="none" stroke="var(--red)" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round"/>
-
-      <!-- passes -->
-      <g fill="var(--ink2)">
-        <polygon points="326,232 332,244 320,244"/>
-        <polygon points="651,474 657,486 645,486"/>
-        
-        
-        
-      </g>
-      <polygon points="729,643 735,655 723,655" fill="var(--red)"/>
-      <polygon points="768,667 775,681 761,681" fill="var(--red)"/>
-      <circle cx="274" cy="40" r="5.5" fill="var(--red)"/>
-
-      <!-- overnight stops -->
-      <g fill="var(--surface)" stroke="var(--amber)" stroke-width="2.6">
-        <circle cx="321" cy="271" r="6.5"/><circle cx="256" cy="148" r="6"/>
-        <circle cx="334" cy="144" r="6"/><circle cx="599" cy="347" r="6"/>
-        <circle cx="690" cy="628" r="6"/>
-      </g>
-      <!-- waypoints -->
-      <g fill="var(--ink)">
-        <circle cx="326" cy="240" r="2.6"/><circle cx="339" cy="183" r="2.6"/>
-        <circle cx="295" cy="165" r="2.6"/><circle cx="313" cy="170" r="2.6"/>
-        <circle cx="126" cy="92" r="2.6"/><circle cx="110" cy="84" r="2.6"/>
-        <circle cx="378" cy="204" r="2.6"/><circle cx="456" cy="222" r="2.6"/>
-        <circle cx="482" cy="300" r="2.6"/><circle cx="474" cy="308" r="2.6"/>
-        <circle cx="573" cy="326" r="2.6"/><circle cx="651" cy="378" r="2.6"/>
-        <circle cx="599" cy="417" r="2.6"/><circle cx="638" cy="521" r="2.6"/>
-        <circle cx="599" cy="521" r="2.6"/><circle cx="573" cy="495" r="2.6"/>
-        <circle cx="534" cy="477" r="2.6"/><circle cx="313" cy="110" r="2.6"/><circle cx="295" cy="79" r="2.6"/>
-        <circle cx="352" cy="313" r="2.6"/>
-        <circle cx="342" cy="300" r="2.6"/><circle cx="253" cy="266" r="2.6"/>
-        <circle cx="217" cy="256" r="2.6"/><circle cx="113" cy="240" r="2.6"/>
-        <circle cx="222" cy="235" r="2.6"/><circle cx="240" cy="256" r="2.6"/>
-        <circle cx="331" cy="293" r="2.6"/><circle cx="348" cy="340" r="2.6"/>
-      </g>
-
-      <!-- place labels -->
-      <g class="mono" font-size="11" fill="var(--ink)" font-weight="500">
-        <text x="333" y="279" letter-spacing=".5">LEH</text>
-        <text x="286" y="180" text-anchor="end">Hunder</text>
-        <text x="318" y="165" text-anchor="end">Diskit</text>
-        <text x="262" y="142">THOISE</text>
-        <text x="341" y="140">SUMUR</text>
-        <text x="348" y="180">Khalsar</text>
-        <text x="134" y="98">TURTUK</text>
-        <text x="103" y="78" text-anchor="end">THANG</text>
-        <text x="384" y="200">Agham</text>
-        <text x="462" y="217">Shyok</text>
-        <text x="490" y="298">Durbuk</text>
-        <text x="468" y="320" text-anchor="end">Tangtse</text>
-        <text x="566" y="318" text-anchor="end">Lukung</text>
-        <text x="592" y="340" text-anchor="end">SPANGMIK</text>
-        <text x="658" y="382">Merak</text>
-        <text x="592" y="421" text-anchor="end">Chushul</text>
-        <text x="631" y="530" text-anchor="end">Loma</text>
-        <text x="592" y="516" text-anchor="end">Nyoma</text>
-        <text x="580" y="491">Mahe</text>
-        <text x="528" y="472" text-anchor="end">Chumathang</text>
-        <text x="306" y="118" text-anchor="end">PANAMIK</text>
-        <text x="289" y="75" text-anchor="end">Warshi</text>
-        
-        
-        <text x="679" y="622" text-anchor="end">HANLE</text>
-        
-        
-        
-        <text x="357" y="358" text-anchor="end">Upshi</text>
-        <text x="326" y="284" text-anchor="end">Shey</text>
-        <text x="356" y="344">Hemis</text>
-        <text x="346" y="310" text-anchor="end">Karu</text>
-        <text x="336" y="297" text-anchor="end">Thiksey</text>
-        <text x="248" y="277" text-anchor="end">Nimmu</text>
-        <text x="214" y="252" text-anchor="end">Alchi</text>
-        <text x="107" y="236" text-anchor="end">LAMAYURU</text>
-        <text x="228" y="231">Likir</text>
-        <text x="246" y="264">Basgo</text>
-      </g>
-      <g class="mono" font-size="10" fill="var(--red)" font-weight="600">
-        <text x="764" y="702" text-anchor="end">UMLING LA 5,798 m</text>
-        <text x="268" y="36" text-anchor="end">SIACHEN BASE CAMP</text>
-        <text x="740" y="640">Photi La 5,524</text>
-      </g>
-      <g class="mono" font-size="9.5" fill="var(--muted)">
-        <text x="318" y="213" text-anchor="end">Khardung La 5,359</text>
-        <text x="661" y="478">Tsaga La 4,660</text>
-        
-      </g>
-
-      <!-- leg distances (road km) -->
-      <g class="mono" font-size="10.5" fill="var(--amber-ink)" font-weight="600">
-        <text x="333" y="257">39</text>
-        <text x="349" y="207">57</text>
-        <text x="345" y="163">20</text>
-        <text x="300" y="152" text-anchor="middle">26</text>
-        <text x="228" y="112" text-anchor="middle">64</text>
-        <text x="130" y="108" text-anchor="middle">10</text>
-        <text x="420" y="204" text-anchor="middle">85</text>
-        <text x="480" y="262">43</text>
-        <text x="514" y="308" text-anchor="middle">37</text>
-        <text x="640" y="356" text-anchor="middle">25</text>
-        <text x="639" y="400">40</text>
-        <text x="638" y="452">30</text>
-        <text x="656" y="503">20</text>
-        <text x="676" y="578">50</text>
-        <text x="714" y="630">40</text>
-        <text x="738" y="676" text-anchor="end">33</text>
-        <text x="618" y="513" text-anchor="middle">20</text>
-        <text x="588" y="503">20</text>
-        
-        
-        
-        <text x="551" y="478" text-anchor="middle">15</text>
-        <text x="440" y="432" text-anchor="middle">180</text>
-        <text x="320" y="134" text-anchor="end">22</text>
-        <text x="300" y="52">43</text>
-        <text x="334" y="330" text-anchor="end">45</text>
-        <text x="272" y="281" text-anchor="middle">65</text>
-        <text x="164" y="263" text-anchor="middle">60</text>
-      </g>
-
-      <!-- day badges on the legs -->
-      <g>
-        <g fill="var(--amber)"><circle cx="286" cy="298" r="10"/><circle cx="308" cy="252" r="10"/><circle cx="200" cy="142" r="10"/><circle cx="432" cy="240" r="10"/><circle cx="613" cy="401" r="10"/><circle cx="320" cy="92" r="10"/><circle cx="462" cy="388" r="10"/><circle cx="168" cy="230" r="10"/><circle cx="370" cy="318" r="10"/></g>
-        <circle cx="700" cy="654" r="10" fill="var(--red)"/>
-        <g class="mono" font-size="10" font-weight="600" fill="var(--badge-ink)" text-anchor="middle">
-          <text x="286" y="302">3</text><text x="308" y="256">4</text><text x="200" y="146">5</text>
-          <text x="432" y="244">7</text><text x="613" y="405">8</text><text x="700" y="658">9</text>
-          <text x="320" y="96">6</text><text x="462" y="392">10</text><text x="370" y="322">11</text>
-          <text x="168" y="234">12</text>
-        </g>
-      </g>
-
-      <!-- north + scale -->
-      <g stroke="var(--muted)" stroke-width="1.4" fill="none">
-        <path d="M842,104 L842,66"/><path d="M836,74 L842,64 L848,74"/>
-        <path d="M110,716 L110,722 M251,716 L251,722 M110,719 L251,719"/>
-      </g>
-      <text x="842" y="120" class="mono" font-size="10" fill="var(--muted)" text-anchor="middle">N</text>
-      <text x="180" y="737" class="mono" font-size="10" fill="var(--muted)" text-anchor="middle">50 km straight-line</text>
-    </svg>
+    <svg viewBox="0 0 900 780" role="img" aria-label="Schematic map of the eleven-day Ladakh loop: Leh north over Khardung La to Nubra and Thoise, west to Turtuk and Thang, north up the Nubra arm to Siachen Base Camp, east down the Shyok valley to Pangong Tso, south through Chushul and Tsaga La to Hanle, out and back to Umling La, then home down the Indus through Chumathang to Leh. Road distances in kilometres are marked on each leg." class="mono" fill="var(--ink)">
+  <polyline points="110,84 126,92 196,126 264,149 295,165 313,170 339,183 378,204 456,222 482,300" fill="none" stroke="var(--water)" stroke-width="2.2" opacity=".40" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="274,40 295,79 313,110 334,144 339,183" fill="none" stroke="var(--water)" stroke-width="2.2" opacity=".40" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="573,495 534,477 456,417 391,370 365,352 352,313 342,300 321,271 253,266 217,256 157,230 113,240" fill="none" stroke="var(--water)" stroke-width="2.2" opacity=".40" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="552,316 573,326 599,347 625,365 651,378 703,396" fill="none" stroke="var(--water)" stroke-width="10" opacity=".68" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="321,271 305,277 279,271 253,266 240,256 222,235" fill="none" stroke="var(--hot-ink)" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="321,271 326,256 326,240 331,227 334,214 339,183 313,170 295,165 264,149" fill="none" stroke="var(--hot-ink)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="264,149 196,126 126,92 110,84" fill="none" stroke="var(--hot-ink)" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="264,149 295,165 313,170 339,183 334,144" fill="none" stroke="var(--hot-ink)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="334,144 313,110 295,79 274,40" fill="none" stroke="var(--hot-ink)" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="334,144 339,183 378,204 456,222 482,300 474,308 573,326 599,347" fill="none" stroke="var(--hot-ink)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="599,347 625,365 651,378 599,417 651,482 638,521 690,628" fill="none" stroke="var(--hot-ink)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="690,628 729,651 768,677" fill="none" stroke="var(--danger)" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="690,628 638,521 599,521 573,495 534,477 365,352 352,313 342,300 321,271" fill="none" stroke="var(--hot-ink)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="321,271 334,295 342,300 352,318 352,336" fill="none" stroke="var(--hot-ink)" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="321,271 253,266 217,256 191,248 157,230 136,240 113,240" fill="none" stroke="var(--hot-ink)" stroke-width="2.5" stroke-dasharray="7 5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="222" cy="235" r="2.7" fill="var(--ink)"/>
+  <circle cx="110" cy="84" r="2.7" fill="var(--ink)"/>
+  <circle cx="352" cy="318" r="2.7" fill="var(--ink)"/>
+  <circle cx="352" cy="336" r="2.7" fill="var(--ink)"/>
+  <circle cx="217" cy="256" r="2.7" fill="var(--ink)"/>
+  <circle cx="342" cy="300" r="2.7" fill="var(--ink)"/>
+  <circle cx="573" cy="326" r="2.7" fill="var(--ink)"/>
+  <circle cx="599" cy="417" r="2.7" fill="var(--ink)"/>
+  <circle cx="625" cy="365" r="2.7" fill="var(--ink)"/>
+  <circle cx="113" cy="240" r="2.7" fill="var(--ink)"/>
+  <circle cx="573" cy="495" r="2.7" fill="var(--ink)"/>
+  <circle cx="126" cy="92" r="2.7" fill="var(--ink)"/>
+  <circle cx="456" cy="222" r="2.7" fill="var(--ink)"/>
+  <circle cx="334" cy="295" r="2.7" fill="var(--ink)"/>
+  <circle cx="474" cy="308" r="2.7" fill="var(--ink)"/>
+  <circle cx="295" cy="79" r="2.7" fill="var(--ink)"/>
+  <circle cx="305" cy="277" r="2.7" fill="var(--ink)"/>
+  <circle cx="240" cy="256" r="2.7" fill="var(--ink)"/>
+  <circle cx="326" cy="256" r="2.7" fill="var(--ink)"/>
+  <circle cx="534" cy="477" r="2.7" fill="var(--ink)"/>
+  <circle cx="191" cy="248" r="2.7" fill="var(--ink)"/>
+  <circle cx="378" cy="204" r="2.7" fill="var(--ink)"/>
+  <circle cx="136" cy="240" r="2.7" fill="var(--ink)"/>
+  <circle cx="313" cy="110" r="2.7" fill="var(--ink)"/>
+  <circle cx="331" cy="227" r="2.7" fill="var(--ink)"/>
+  <circle cx="279" cy="271" r="2.7" fill="var(--ink)"/>
+  <circle cx="334" cy="214" r="2.7" fill="var(--ink)"/>
+  <circle cx="196" cy="126" r="2.7" fill="var(--ink)"/>
+  <circle cx="295" cy="165" r="2.7" fill="var(--ink)"/>
+  <circle cx="638" cy="521" r="2.7" fill="var(--ink)"/>
+  <circle cx="365" cy="352" r="2.7" fill="var(--ink)"/>
+  <circle cx="651" cy="378" r="2.7" fill="var(--ink)"/><polygon points="651,369 656,374 651,379 646,374" fill="none" stroke="var(--water)" stroke-width="1.4"/>
+  <circle cx="339" cy="183" r="2.7" fill="var(--ink)"/><polygon points="339,174 344,179 339,184 334,179" fill="var(--water)"/>
+  <circle cx="253" cy="266" r="2.7" fill="var(--ink)"/><polygon points="253,257 258,262 253,267 248,262" fill="var(--water)"/>
+  <circle cx="157" cy="230" r="2.7" fill="var(--ink)"/><polygon points="157,221 162,226 157,231 152,226" fill="var(--water)"/>
+  <circle cx="482" cy="300" r="2.7" fill="var(--ink)"/><polygon points="482,291 487,296 482,301 477,296" fill="none" stroke="var(--water)" stroke-width="1.4"/>
+  <circle cx="352" cy="313" r="2.7" fill="var(--ink)"/><polygon points="352,304 357,309 352,314 347,309" fill="var(--water)"/>
+  <circle cx="313" cy="170" r="2.7" fill="var(--ink)"/><polygon points="313,161 318,166 313,171 308,166" fill="var(--water)"/>
+  <circle cx="599" cy="521" r="2.7" fill="var(--ink)"/><polygon points="599,512 604,517 599,522 594,517" fill="var(--water)"/>
+  <polygon points="651,475 657,487 645,487" fill="var(--ink2)"/>
+  <polygon points="768,670 774,682 762,682" fill="var(--ink2)"/>
+  <polygon points="326,233 332,245 320,245" fill="var(--ink2)"/>
+  <polygon points="729,644 735,656 723,656" fill="var(--ink2)"/>
+  <circle cx="264" cy="149" r="6.5" fill="var(--surface)" stroke="var(--hot-ink)" stroke-width="2.8"/>
+  <circle cx="321" cy="271" r="6.5" fill="var(--surface)" stroke="var(--hot-ink)" stroke-width="2.8"/>
+  <circle cx="334" cy="144" r="6.5" fill="var(--surface)" stroke="var(--hot-ink)" stroke-width="2.8"/>
+  <circle cx="599" cy="347" r="6.5" fill="var(--surface)" stroke="var(--hot-ink)" stroke-width="2.8"/>
+  <circle cx="690" cy="628" r="6.5" fill="var(--surface)" stroke="var(--hot-ink)" stroke-width="2.8"/>
+  <circle cx="274" cy="40" r="6" fill="var(--danger)"/>
+  <text x="322" y="163" font-size="11" font-weight="600">DISKIT</text>
+  <text x="699" y="632" font-size="11" font-weight="600">HANLE</text>
+  <text x="681" y="632" font-size="9" text-anchor="end" fill="var(--muted)">4,250 m</text>
+  <text x="104" y="244" font-size="11" text-anchor="end" font-weight="600">LAMAYURU</text>
+  <text x="330" y="275" font-size="11" font-weight="600">LEH</text>
+  <text x="339" y="257" font-size="9" fill="var(--muted)">3,500 m</text>
+  <text x="283" y="44" font-size="11" fill="var(--danger)" font-weight="600">SIACHEN BASE CAMP</text>
+  <text x="265" y="44" font-size="9" text-anchor="end" fill="var(--muted)">3,660 m</text>
+  <text x="608" y="351" font-size="11" font-weight="600">SPANGMIK</text>
+  <text x="590" y="351" font-size="9" text-anchor="end" fill="var(--muted)">4,250 m</text>
+  <text x="343" y="148" font-size="11" font-weight="600">SUMUR</text>
+  <text x="325" y="148" font-size="9" text-anchor="end" fill="var(--muted)">3,150 m</text>
+  <text x="101" y="88" font-size="11" text-anchor="end" font-weight="600">THANG</text>
+  <text x="255" y="153" font-size="11" text-anchor="end" font-weight="600">THOISE</text>
+  <text x="264" y="138" font-size="9" text-anchor="middle" fill="var(--muted)">3,050 m</text>
+  <text x="135" y="96" font-size="11" font-weight="600">TURTUK</text>
+  <text x="777" y="681" font-size="11" fill="var(--danger)" font-weight="600">UMLING LA</text>
+  <text x="759" y="681" font-size="9" text-anchor="end" fill="var(--muted)">5,798 m</text>
+  <text x="387" y="208" font-size="10.5">Agham</text>
+  <text x="217" y="276" font-size="10.5" text-anchor="middle">Alchi</text>
+  <text x="240" y="234" font-size="10.5">Basgo</text>
+  <text x="205" y="130" font-size="10.5">Bogdang</text>
+  <text x="543" y="481" font-size="10.5">Chumathang</text>
+  <text x="608" y="421" font-size="10.5">Chushul</text>
+  <text x="491" y="304" font-size="10.5">Durbuk</text>
+  <text x="361" y="340" font-size="10.5">Hemis</text>
+  <text x="286" y="169" font-size="10.5" text-anchor="end">Hunder</text>
+  <text x="361" y="317" font-size="10.5">Karu</text>
+  <text x="348" y="187" font-size="10.5">Khalsar</text>
+  <text x="166" y="234" font-size="10.5">Khaltse</text>
+  <text x="343" y="229" font-size="10.5">Khardung</text>
+  <line x1="326" y1="240" x2="352" y2="241" stroke="var(--line)" stroke-width="1"/>
+  <text x="352" y="244" font-size="10.5">Khardung La</text>
+  <text x="317" y="233" font-size="9" text-anchor="end" fill="var(--muted)">5,359 m</text>
+  <text x="222" y="224" font-size="10.5" text-anchor="middle">Likir</text>
+  <text x="647" y="525" font-size="10.5">Loma</text>
+  <text x="582" y="330" font-size="10.5">Lukung</text>
+  <line x1="279" y1="271" x2="243" y2="296" stroke="var(--line)" stroke-width="1"/>
+  <text x="279" y="299" font-size="10.5" text-anchor="middle">Magnetic Hill</text>
+  <text x="582" y="499" font-size="10.5">Mahe</text>
+  <text x="616" y="369" font-size="10.5" text-anchor="end">Man</text>
+  <text x="660" y="382" font-size="10.5">Merak</text>
+  <text x="253" y="286" font-size="10.5" text-anchor="middle">Nimmu</text>
+  <text x="322" y="220" font-size="10.5" text-anchor="end">North Pullu</text>
+  <text x="590" y="525" font-size="10.5" text-anchor="end">Nyoma</text>
+  <text x="322" y="114" font-size="10.5">Panamik</text>
+  <text x="738" y="655" font-size="10.5" fill="var(--danger)">Photi La</text>
+  <text x="720" y="655" font-size="9" text-anchor="end" fill="var(--muted)">5,524 m</text>
+  <line x1="334" y1="295" x2="315" y2="314" stroke="var(--line)" stroke-width="1"/>
+  <text x="315" y="317" font-size="10.5" text-anchor="end">Shey</text>
+  <text x="465" y="226" font-size="10.5">Shyok</text>
+  <line x1="326" y1="256" x2="382" y2="257" stroke="var(--line)" stroke-width="1"/>
+  <text x="382" y="260" font-size="10.5">South Pullu</text>
+  <line x1="305" y1="277" x2="266" y2="317" stroke="var(--line)" stroke-width="1"/>
+  <text x="266" y="320" font-size="10.5" text-anchor="end">Spituk</text>
+  <text x="343" y="333" font-size="10.5" text-anchor="end">Stakna</text>
+  <text x="465" y="312" font-size="10.5" text-anchor="end">Tangtse</text>
+  <line x1="342" y1="300" x2="368" y2="301" stroke="var(--line)" stroke-width="1"/>
+  <text x="368" y="304" font-size="10.5">Thiksey</text>
+  <text x="660" y="486" font-size="10.5">Tsaga La</text>
+  <text x="642" y="486" font-size="9" text-anchor="end" fill="var(--muted)">4,660 m</text>
+  <line x1="191" y1="248" x2="191" y2="283" stroke="var(--line)" stroke-width="1"/>
+  <text x="191" y="286" font-size="10.5" text-anchor="end">Uleytokpo</text>
+  <text x="374" y="356" font-size="10.5">Upshi</text>
+  <text x="136" y="260" font-size="10.5" text-anchor="middle">Wanla</text>
+  <text x="304" y="83" font-size="10.5">Warshi</text>
+  <text x="307" y="261" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">35</text>
+  <text x="303" y="248" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">39</text>
+  <text x="352" y="204" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">57</text>
+  <text x="195" y="114" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">64</text>
+  <text x="118" y="70" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">10</text>
+  <text x="334" y="131" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">22</text>
+  <text x="294" y="57" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">43</text>
+  <text x="417" y="228" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">40</text>
+  <text x="469" y="254" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">43</text>
+  <text x="537" y="320" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">27</text>
+  <text x="636" y="401" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">40</text>
+  <text x="625" y="442" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">30</text>
+  <text x="655" y="505" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">20</text>
+  <text x="664" y="567" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">50</text>
+  <text x="738" y="668" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">33</text>
+  <text x="619" y="514" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">20</text>
+  <text x="554" y="501" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">15</text>
+  <text x="450" y="407" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">100</text>
+  <text x="336" y="319" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">23</text>
+  <text x="255" y="253" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">30</text>
+  <text x="176" y="247" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">30</text>
+  <text x="135" y="228" font-size="10" text-anchor="middle" font-weight="600" fill="var(--hot-ink)">30</text>
+  <text x="552" y="296" font-size="10.5" text-anchor="middle" fill="var(--water)" letter-spacing=".8" font-weight="600">PANGONG</text>
+  <circle cx="273" cy="248" r="10" fill="var(--hot)"/><text x="273" y="252" font-size="10" text-anchor="middle" font-weight="600" fill="#171614">03</text>
+  <circle cx="314" cy="196" r="10" fill="var(--hot)"/><text x="314" y="200" font-size="10" text-anchor="middle" font-weight="600" fill="#171614">04</text>
+  <circle cx="146" cy="74" r="10" fill="var(--hot)"/><text x="146" y="77" font-size="10" text-anchor="middle" font-weight="600" fill="#171614">05</text>
+  <circle cx="291" cy="184" r="10" fill="var(--hot)"/><text x="291" y="188" font-size="10" text-anchor="middle" font-weight="600" fill="#171614">05</text>
+  <circle cx="315" cy="61" r="10" fill="var(--hot)"/><text x="315" y="64" font-size="10" text-anchor="middle" font-weight="600" fill="#171614">06</text>
+  <circle cx="502" cy="282" r="10" fill="var(--hot)"/><text x="502" y="286" font-size="10" text-anchor="middle" font-weight="600" fill="#171614">07</text>
+  <circle cx="619" cy="399" r="10" fill="var(--hot)"/><text x="619" y="402" font-size="10" text-anchor="middle" font-weight="600" fill="#171614">08</text>
+  <circle cx="749" cy="633" r="10" fill="var(--hot)"/><text x="749" y="636" font-size="10" text-anchor="middle" font-weight="600" fill="#171614">09</text>
+  <circle cx="554" cy="459" r="10" fill="var(--hot)"/><text x="554" y="462" font-size="10" text-anchor="middle" font-weight="600" fill="#171614">10</text>
+  <circle cx="362" cy="282" r="10" fill="var(--hot)"/><text x="362" y="286" font-size="10" text-anchor="middle" font-weight="600" fill="#171614">11</text>
+  <circle cx="169" cy="262" r="10" fill="var(--hot)"/><text x="169" y="265" font-size="10" text-anchor="middle" font-weight="600" fill="#171614">12</text>
+  <text x="222" y="131" font-size="9.5" fill="var(--water)" letter-spacing="1.4" text-anchor="middle" transform="rotate(18 222 131)">SHYOK</text>
+  <text x="305" y="97" font-size="9.5" fill="var(--water)" letter-spacing="1.4" text-anchor="middle" transform="rotate(-62 305 97)">NUBRA</text>
+  <text x="417" y="391" font-size="9.5" fill="var(--water)" letter-spacing="1.4" text-anchor="middle" transform="rotate(34 417 391)">INDUS</text>
+  <g stroke="var(--muted)" stroke-width="1.4" fill="none"><path d="M854,104 L854,62"/><path d="M848,72 L854,60 L860,72"/><path d="M60,738 L60,746 M180,738 L180,746 M60,742 L180,742"/></g><text x="854" y="120" font-size="10" fill="var(--muted)" text-anchor="middle">N</text><text x="120" y="760" font-size="10" fill="var(--muted)" text-anchor="middle">50 km straight-line</text>
+</svg>
    </div>
     <div class="legend">
       <span><i class="sw"></i>onward leg</span>
       <span><i class="sw dash"></i>out &amp; back, same day</span>
+      <span><i class="sw ext"></i>Umling La</span>
       <span><i class="dotk"></i>overnight stop</span>
       <span><i class="trik"></i>pass</span>
+      <span><i class="fuelk"></i>petrol pump</span>
+      <span><i class="fuelk hollow"></i>loose petrol only</span>
       <span><i class="sw water"></i>lake / river</span>
       <span><i class="numk">6</i>September date riding that leg</span>
     </div>
-    <figcaption><b>Numbers on the route are road kilometres between adjacent points</b>, not straight-line distance &#8212; the scale bar at bottom left is straight-line and will disagree with them, which is the point: the Shyok and the Indus decide where the road can go, so every leg is longer than it looks. Badges are September dates, not day numbers. The 2nd is an arrival day and has no leg; the 11th is your fixed Leh day, drawn as the short dashed monastery loop to Shey, Thiksey and Hemis. Umling La is drawn in red because it is the only stretch with no fuel, food, shelter or phone signal along its whole 146 km. Siachen Base Camp, the other red mark, is the northern limit of the trip.</figcaption>
+    <figcaption><b>Numbers on the route are road kilometres between adjacent points</b>, not straight-line distance &#8212; the scale bar disagrees with them on purpose. The Shyok, Nubra and Indus decide where a road can go, so every leg is longer than it looks. Badges are September dates. Diamonds mark fuel: solid is a real pump, hollow is loose petrol sold by the bottle at a premium. Umling La is drawn in red because it is the only stretch with no fuel, food, shelter or signal along its whole 146 km.</figcaption>
   </figure>
 </section>
 
@@ -429,8 +426,8 @@ header.mast .ridge{height:104px}
    <div class="figscroll">
     <svg viewBox="0 0 880 350" role="img" aria-label="Altitude profile across eleven days, 2 to 12 September. The amber line shows the highest point reached each day, spiking to Khardung La at 5,359 metres on the 4th and Umling La at 5,798 metres on the 9th. The teal line shows where the group sleeps each night, which stays at 3,500 metres for two days, drops to about 3,100 metres in Nubra for three nights, then rises to 4,250 metres at Pangong and Hanle before returning to Leh.">
       <!-- acclimatisation band -->
-      <rect x="70" y="40" width="136" height="240" fill="var(--teal-wash)"/>
-      <text x="138" y="58" class="mono" font-size="9.5" fill="var(--teal)" text-anchor="middle" letter-spacing=".1em">48 H IN LEH</text>
+      <rect x="70" y="40" width="136" height="240" fill="var(--water-wash)"/>
+      <text x="138" y="58" class="mono" font-size="9.5" fill="var(--water)" text-anchor="middle" letter-spacing=".1em">48 H IN LEH</text>
 
       <!-- grid -->
       <g stroke="var(--hair)" stroke-width="1">
@@ -443,26 +440,26 @@ header.mast .ridge{height:104px}
       </g>
 
       <!-- highest point reached -->
-      <polyline fill="none" stroke="var(--amber)" stroke-width="2.6" stroke-linejoin="round"
+      <polyline fill="none" stroke="var(--hot-ink)" stroke-width="2.6" stroke-linejoin="round"
         points="100,220 171,220 242,88 313,254 384,216 455,171 526,141 597,55 668,171 739,220 810,220"/>
       <!-- where you sleep -->
-      <polyline fill="none" stroke="var(--teal)" stroke-width="3" stroke-linejoin="round"
+      <polyline fill="none" stroke="var(--water)" stroke-width="3" stroke-linejoin="round"
         points="100,228 171,228 242,261 313,254 384,254 455,171 526,171 597,171 668,228 739,228 810,228"/>
 
-      <g fill="var(--amber)">
+      <g fill="var(--hot-ink)">
         <circle cx="100" cy="220" r="3"/><circle cx="171" cy="220" r="3"/><circle cx="242" cy="88" r="3.5"/>
         <circle cx="313" cy="254" r="3"/><circle cx="384" cy="216" r="3.5"/><circle cx="455" cy="171" r="3"/>
         <circle cx="526" cy="141" r="3.5"/><circle cx="668" cy="171" r="3"/>
         <circle cx="739" cy="220" r="3"/><circle cx="810" cy="220" r="3"/>
       </g>
-      <circle cx="597" cy="55" r="5" fill="var(--red)"/>
+      <circle cx="597" cy="55" r="5" fill="var(--danger)"/>
 
       <g class="mono" font-size="9.5" fill="var(--muted)">
         <text x="242" y="80" text-anchor="middle">Khardung La</text>
         <text x="384" y="208" text-anchor="middle">Siachen Base Camp</text>
         <text x="526" y="133" text-anchor="middle">Tsaga La</text>
       </g>
-      <text x="597" y="43" class="mono" font-size="11" fill="var(--red)" font-weight="600" text-anchor="middle">UMLING LA 5,798</text>
+      <text x="597" y="43" class="mono" font-size="11" fill="var(--danger)" font-weight="600" text-anchor="middle">UMLING LA 5,798</text>
 
       <!-- x axis -->
       <g class="mono" font-size="10.5" fill="var(--muted)" text-anchor="middle">
@@ -481,9 +478,9 @@ header.mast .ridge{height:104px}
 
       <!-- inline key -->
       <g class="mono" font-size="10.5">
-        <path d="M596,336 L626,336" stroke="var(--amber)" stroke-width="2.6"/>
+        <path d="M596,336 L626,336" stroke="var(--hot-ink)" stroke-width="2.6"/>
         <text x="632" y="340" fill="var(--muted)">highest point reached</text>
-        <path d="M754,336 L784,336" stroke="var(--teal)" stroke-width="3"/>
+        <path d="M754,336 L784,336" stroke="var(--water)" stroke-width="3"/>
         <text x="790" y="340" fill="var(--muted)">where you sleep</text>
       </g>
     </svg>
