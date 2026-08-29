@@ -1,4 +1,4 @@
-const CACHE = 'ladakh-2026-v1';
+const CACHE = 'ladakh-2026-v2';
 const CORE = ['./', './index.html', './siachen.html', './tso-moriri.html',
               './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png'];
 
