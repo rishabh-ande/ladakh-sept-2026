@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>The Siachen Variant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#E8E9E6; --surface:#F4F5F2; --surface2:#DDDFDA; --sunken:#D2D5CF;
+  --ink:#191D1C; --ink2:#3B4240; --muted:#5E6661; --line:#C4C9C2; --hair:#D6D9D3;
+  --amber:#A9670F; --amber-ink:#8A5309; --amber-wash:#EBDCC0;
+  --teal:#166A72; --teal-wash:#CDDFE1;
+  --red:#98301F; --red-wash:#EDD5CF;
+  --badge-ink:#FBFAF7;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1110; --surface:#161B19; --surface2:#1E2523; --sunken:#101514;
+    --ink:#E2E7E3; --ink2:#BEC6C1; --muted:#8A948E; --line:#2B3330; --hair:#222927;
+    --amber:#E0A24A; --amber-ink:#EDB86A; --amber-wash:#38290F;
+    --teal:#63B4B9; --teal-wash:#12302F;
+    --red:#E08672; --red-wash:#3A1F19;
+    --badge-ink:#0D1110;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1110; --surface:#161B19; --surface2:#1E2523; --sunken:#101514;
+  --ink:#E2E7E3; --ink2:#BEC6C1; --muted:#8A948E; --line:#2B3330; --hair:#222927;
+  --amber:#E0A24A; --amber-ink:#EDB86A; --amber-wash:#38290F;
+  --teal:#63B4B9; --teal-wash:#12302F;
+  --red:#E08672; --red-wash:#3A1F19;
+  --badge-ink:#0D1110;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:0 22px 90px}
+.col{max-width:66ch}
+
+h1,h2,h3,h4,.dispn{font-family:Oswald,"Arial Narrow",Impact,sans-serif; font-weight:500; letter-spacing:.005em}
+.mono,td.n,.km,.alt{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
+
+/* ---------- masthead ---------- */
+header.mast{border-bottom:2px solid var(--ink); padding:52px 0 22px; margin-bottom:34px}
+.kicker{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--amber); margin:0 0 14px}
+h1{font-size:clamp(46px,9vw,88px); line-height:.94; margin:0 0 10px; text-transform:uppercase; text-wrap:balance; font-weight:600}
+.sub{font-size:19px; color:var(--ink2); margin:0 0 30px; max-width:56ch}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line)}
+.stat{background:var(--surface); padding:14px 16px}
+.stat b{display:block; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; font-size:26px; font-weight:600; line-height:1.1; color:var(--ink)}
+.stat span{display:block; font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); margin-top:5px}
+
+/* ---------- sections ---------- */
+section{margin:56px 0 0}
+h2{font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--amber); margin:0 0 6px; font-weight:600}
+h2 + .lede{font-size:26px; line-height:1.28; margin:0 0 26px; max-width:34ch; text-wrap:balance; font-family:Oswald,sans-serif; font-weight:400; text-transform:none; color:var(--ink)}
+p{margin:0 0 15px}
+a{color:var(--amber); text-decoration-thickness:1px; text-underline-offset:2px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+
+/* ---------- figures ---------- */
+figure{margin:0 0 40px; border:1px solid var(--line); background:var(--surface); padding:20px 20px 0}
+.figscroll{overflow-x:auto}
+figure svg{display:block; width:100%; min-width:620px; height:auto}
+figcaption{border-top:1px solid var(--hair); margin-top:14px; padding:13px 0 18px; font-size:14.5px; color:var(--muted); max-width:76ch}
+figcaption b{color:var(--ink2); font-weight:600}
+
+.legend{display:flex; flex-wrap:wrap; gap:8px 22px; padding:14px 0 0; font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted); letter-spacing:.03em}
+.legend span{display:flex; align-items:center; gap:7px}
+.sw{width:26px; height:0; border-top:2.5px solid var(--amber); flex:none}
+.sw.dash{border-top-style:dashed}
+.sw.water{border-top:3px solid var(--teal); opacity:.75}
+.dotk{width:11px;height:11px;border-radius:50%;border:2.5px solid var(--amber);background:var(--surface);flex:none}
+.trik{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:10px solid var(--ink2);flex:none}
+.numk{width:16px;height:16px;border-radius:50%;background:var(--amber);color:var(--badge-ink);font-size:9.5px;display:flex;align-items:center;justify-content:center;flex:none;font-weight:600}
+
+/* ---------- day cards ---------- */
+.days{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--ink)}
+.day{border-bottom:1px solid var(--line); padding:24px 0 28px; display:grid; grid-template-columns:74px 1fr; gap:0 26px}
+.dnum{font-family:Oswald,sans-serif; font-size:44px; line-height:.8; color:var(--amber); font-weight:600}
+.dnum small{display:block; font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.09em; color:var(--muted); margin-top:9px; font-weight:400; text-transform:uppercase; line-height:1.4}
+.dbody h3{font-size:23px; margin:0 0 12px; text-transform:uppercase; letter-spacing:.02em; line-height:1.18; color:var(--ink)}
+.dbody h3 em{font-style:normal; color:var(--red); text-transform:none; font-family:"Source Serif 4",serif; font-size:16px; letter-spacing:0}
+.meta{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 15px}
+.chip{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.04em; padding:4px 9px; background:var(--surface2); color:var(--ink2); border-radius:2px}
+.chip.hi{background:var(--amber-wash); color:var(--amber-ink)}
+.chip.rough{background:var(--red-wash); color:var(--red)}
+.chip.mine{background:var(--teal-wash); color:var(--teal); font-weight:600}
+.route{font-family:"IBM Plex Mono",monospace; font-size:12.5px; line-height:1.95; color:var(--ink2); background:var(--sunken); padding:11px 13px; margin:0 0 16px; border-left:3px solid var(--amber); overflow-wrap:anywhere}
+.route b{color:var(--ink); font-weight:600}
+.dbody ul{margin:0 0 14px; padding-left:19px}
+.dbody li{margin-bottom:7px}
+.note{border-left:3px solid var(--line); padding:2px 0 2px 14px; font-size:15.5px; color:var(--ink2)}
+.note.warn{border-left-color:var(--red)}
+.note strong{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--red); display:block; margin-bottom:3px; font-weight:600}
+.note.plain strong{color:var(--muted)}
+.dbody li b.t{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;color:var(--amber-ink);margin-right:8px;font-weight:600}
+.dbody h4{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:20px 0 9px;font-weight:600}
+
+/* ---------- tables ---------- */
+.tscroll{overflow-x:auto; margin:0 0 26px; border:1px solid var(--line)}
+table{border-collapse:collapse; width:100%; min-width:480px; background:var(--surface)}
+th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--hair); font-size:15px; vertical-align:top}
+th{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); background:var(--surface2); border-bottom:1px solid var(--line); font-weight:600; white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.n{white-space:nowrap; color:var(--ink2)}
+td strong{font-weight:600}
+.hot{color:var(--red); font-weight:600}
+
+/* ---------- callout ---------- */
+.slab{background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--red); padding:24px 26px; margin:0 0 28px}
+.slab h4{font-size:15px; letter-spacing:.09em; text-transform:uppercase; margin:0 0 12px; color:var(--red)}
+.slab.calm{border-top-color:var(--amber)}
+.slab.calm h4{color:var(--amber)}
+.slab ul{margin:0; padding-left:19px}
+.slab li{margin-bottom:8px}
+.slab li:last-child{margin-bottom:0}
+
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:24px}
+.checks{list-style:none; padding:0; margin:0; counter-reset:c}
+.checks li{counter-increment:c; padding-left:38px; position:relative; margin-bottom:14px}
+.checks li::before{content:counter(c); position:absolute; left:0; top:1px; width:24px; height:24px; border-radius:50%; background:var(--amber); color:var(--badge-ink); font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:600; display:flex; align-items:center; justify-content:center}
+
+footer{margin-top:70px; padding-top:22px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted); letter-spacing:.04em; line-height:1.8}
+
+@media (max-width:620px){
+  body{font-size:16px}
+  .day{grid-template-columns:1fr; gap:0}
+  .dnum{font-size:30px; margin-bottom:14px; display:flex; align-items:baseline; gap:12px}
+  .dnum small{margin-top:0}
+  header.mast{padding-top:34px}
+  figure{padding:14px 14px 0}
+}
+@media print{
+  body{background:#fff; color:#000}
+  figure,.slab,.tscroll{break-inside:avoid}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+
+<p style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;margin:0 0 26px"><a href="./">&#8592; both plans</a> &nbsp;&#183;&nbsp; <a href="./tso-moriri.html">the Tso Moriri Variant &#8594;</a></p>
+<header class="mast">
+  <p class="kicker">Plan 1 of 2 &nbsp;&#183;&nbsp; 2&#8211;13 September 2026 &nbsp;&#183;&nbsp; five riders, five bikes</p>
+  <h1>The Siachen<br>Variant</h1>
+  <p class="sub">A day at Siachen Base Camp, paid for with the Changthang lakes. Khardung La, Turtuk and Thang, the Nubra north arm to the glacier, the Shyok valley to Pangong, Rezang La, Hanle, Umling La, then home down the Indus.</p>
+  <div class="stats">
+    <div class="stat"><b>1,644</b><span>km ridden</span></div>
+    <div class="stat"><b>4</b><span>passes over 4,600 m</span></div>
+    <div class="stat"><b>5,798</b><span>metres, highest</span></div>
+    <div class="stat"><b>3,660</b><span>metres at Base Camp</span></div>
+    <div class="stat"><b>2</b><span>bookings to change</span></div>
+    <div class="stat"><b>3</b><span>early starts of 11</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>The choice</h2>
+  <p class="lede">Two plans. Eight of eleven days are identical. They differ in what you do with one spare day.</p>
+
+  <p class="col">Both versions arrive in Leh on the 2nd, acclimatise on the 3rd, cross Khardung La to Thoise on the 4th, ride Turtuk and Thang on the 5th, take the Shyok valley to Pangong, cross Rezang La and Tsaga La to Hanle, spend a whole day on Umling La, hold the 11th in Leh, and finish at Lamayuru on the 12th. <strong>Every one of those days is the same in both.</strong></p>
+  <p class="col">There are seven riding days between leaving Leh on the 4th and returning on the 10th, and the circuit fills all seven exactly. One spare day does not exist. So the question is only this: <strong>do you spend a day on Siachen Base Camp, or do you spend it coming home from Hanle the long way, through Tso Moriri?</strong> You cannot have both.</p>
+
+  <div class="tscroll">
+    <table>
+      <thead><tr><th></th><th>Siachen variant</th><th>Tso Moriri variant</th></tr></thead>
+      <tbody>
+        <tr><td><strong>The spare day</strong></td><td>6 Sep &#8212; Sumur to Siachen Base Camp and back, 130 km</td><td>Used to reach Pangong a day earlier, freeing the 9th for Tso Moriri</td></tr>
+        <tr><td><strong>You get</strong></td><td>Siachen Base Camp and the memorial &#183; Panamik hot springs &#183; Warshi &#183; Chumathang hot springs on the way home</td><td>Tso Moriri &#183; Tso Kar &#183; Startsapuk Tso &#183; Polokongka La 4,950 m &#183; Tanglang La 5,328 m</td></tr>
+        <tr><td><strong>You miss</strong></td><td>Tso Moriri, Tso Kar, Tanglang La</td><td>Siachen, Panamik, everything up the Nubra arm past Sumur</td></tr>
+        <tr><td><strong>Riding, 4&#8211;10 Sep</strong></td><td class="n">1,209 km</td><td class="n">1,211 km</td></tr>
+        <tr><td><strong>Longest day</strong></td><td class="n">250 km &#8212; Hanle to Leh, 10 Sep</td><td class="n">230 km &#8212; Karzok to Leh, 10 Sep</td></tr>
+        <tr><td><strong>Highest night</strong></td><td class="n">4,250 m &#8212; Hanle</td><td class="n">4,530 m &#8212; Karzok</td></tr>
+        <tr><td><strong>Bookings to change</strong></td><td>Two: add a second Hanle night on the 9th, drop the pending Karzok</td><td>Three: cancel Sumur on the 6th, move Pangong to the 6th, add Hanle on the 7th</td></tr>
+        <tr><td><strong>Lakes on the trip</strong></td><td class="n">1 &#8212; Pangong</td><td class="n">4 &#8212; Pangong, Tso Moriri, Tso Kar, Startsapuk</td></tr>
+        <tr><td><strong>Passes over 4,600 m</strong></td><td class="n">4</td><td class="n">7</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid2">
+    <div class="slab calm">
+      <h4>The case for Siachen</h4>
+      <ul>
+        <li><strong>Access is the entire argument.</strong> Ordinary civilians are stopped at the OP Baba Shrine, two to three kilometres short of Base Camp, and never see the glacier at all. This group can enter Base Camp itself and reach the memorial.</li>
+        <li>That is not a permit you can buy and it is not a thing you can arrange next year. It exists because of who is riding with you, on this trip.</li>
+        <li>Tso Moriri, Tso Kar and Tanglang La are all reachable on any future Ladakh trip, from Leh, on ordinary roads, with no one's help.</li>
+        <li>You still get one enormous high-altitude lake either way. Pangong is not a consolation prize.</li>
+      </ul>
+    </div>
+    <div class="slab calm">
+      <h4>The case for Tso Moriri</h4>
+      <ul>
+        <li><strong>One day buys four places, not one.</strong> Tso Moriri, Tso Kar, Startsapuk Tso, and two passes at 4,950 m and 5,328 m, against a single base camp.</li>
+        <li>Tso Moriri sits at 4,522 m, runs 28 km long, has Korzok Gompa on its shore and a fraction of Pangong's crowds. Plenty of people who have seen both rate it higher.</li>
+        <li>Siachen Base Camp is a place of enormous meaning that physically looks like an army transit camp. What you take from it is what you bring to it.</li>
+        <li>It is also the safer shape: no day over 230 km, and the 10th runs on the Leh&#8211;Manali highway rather than 250 km of Changthang.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="slab">
+    <h4>Where I landed, and why I changed my mind</h4>
+    <ul>
+      <li>I first recommended dropping Siachen. That recommendation rested on one specific premise: that you would be turned back at OP Baba and would never see the glacier, making it a 130 km round trip to a view you do not get.</li>
+      <li><strong>That premise turned out to be false for this group.</strong> With genuine Base Camp access the calculation is not close, and the recommendation goes with the premise.</li>
+      <li><strong>I would take the Siachen variant.</strong> Scarcity decides it. The lakes keep. The access does not &#8212; it is attached to a person, not to a place, and it will not be there on the next trip.</li>
+      <li>That said, this is a five-person decision and the difference is one day, not a ruined holiday. Both plans are complete, safe, and end with Umling La. Nobody is getting a worse trip.</li>
+    </ul>
+  </div>
+</section>
+
+
+<section>
+  <h2>What this variant changes</h2>
+  <p class="lede">All five confirmed stays survive untouched. Two things to do, and one of them is a cancellation.</p>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Night</th><th>You booked</th><th>This variant</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td class="n">4 Sep</td><td>Thoise</td><td>Thoise</td><td><strong>Keep</strong></td></tr>
+        <tr><td class="n">5 Sep</td><td>Sumur</td><td>Sumur</td><td><strong>Keep</strong></td></tr>
+        <tr><td class="n">6 Sep</td><td>Sumur</td><td>Sumur &#8212; Siachen day</td><td><strong>Keep.</strong> This is the night the other variant cancels</td></tr>
+        <tr><td class="n">7 Sep</td><td>Pangong</td><td>Pangong &#8212; Spangmik</td><td><strong>Keep</strong></td></tr>
+        <tr><td class="n">8 Sep</td><td>Hanle</td><td>Hanle</td><td><strong>Keep</strong></td></tr>
+        <tr><td class="n hot">9 Sep</td><td>Karzok &#8212; pending</td><td>Hanle, second night</td><td class="hot">Book a <strong>second Hanle night</strong>. Let the pending Karzok booking go</td></tr>
+        <tr><td class="n">10&#8211;12 Sep</td><td>Leh</td><td>Leh</td><td>Easy</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="col">This is the cheapest of the two on logistics by a wide margin: every stay you have already secured stands, and the only new booking is a second night somewhere you are already staying. The original plan tried to do Umling La and the ride to Tso Moriri on the same day &#8212; 298 km with 5,798 m in the middle. Dropping Tso Moriri removes that problem instead of rescheduling around it.</p>
+</section>
+
+<section>
+  <h2>Figure 1</h2>
+  <p class="lede">Where you actually go, and how far apart it all is.</p>
+  <figure>
+   <div class="figscroll">
+    <svg viewBox="0 0 880 745" role="img" aria-label="Schematic geographic map of Ladakh showing the eleven-day motorcycle loop from Leh north over Khardung La to Nubra and Turtuk, east down the Shyok valley to Pangong Tso, north up the Nubra arm to Siachen Base Camp, east down the Shyok valley to Pangong Tso, south through Chushul and Tsaga La to Hanle, out and back to Umling La, then home down the Indus through Chumathang to Leh, with road distances in kilometres marked on each leg.">
+      <defs>
+        <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+          <path d="M0,1 L9,5 L0,9 z" fill="var(--amber)"/>
+        </marker>
+      </defs>
+
+      <!-- rivers: the roads exist because these do -->
+      <g fill="none" stroke="var(--teal)" stroke-width="2.2" opacity=".42" stroke-linecap="round">
+        <path d="M110,84 L126,92 L200,120 L295,165 L313,170 L339,183 L378,204 L456,222 L482,300"/>
+        <path d="M573,495 L534,477 L470,420 L400,375 L365,352 L352,313 L342,300 L321,271 L253,266 L217,256 L160,248 L113,240"/>
+      </g>
+      <text x="150" y="156" class="mono" font-size="9.5" fill="var(--teal)" letter-spacing="1.4" text-anchor="middle" transform="rotate(21 150 156)">SHYOK</text>
+      <text x="394" y="340" class="mono" font-size="9.5" fill="var(--teal)" letter-spacing="1.4">INDUS</text>
+
+      <!-- lakes -->
+      <g stroke="var(--teal)" fill="none" stroke-linecap="round" opacity=".72">
+        <path d="M552,314 L573,326 L599,347 L625,365 L651,378 L706,404" stroke-width="10"/>
+      </g>
+
+      <!-- ONWARD ROUTE (solid) -->
+      <g fill="none" stroke="var(--amber)" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M321,271 L326,240 L339,183 L313,170 L295,165 L256,148"/>
+        <path d="M256,148 L295,165 L313,170 L339,183 L334,144"/>
+        <path d="M334,144 L339,183 L378,204 L456,222 L482,300 L474,308 L573,326 L599,347"/>
+        <path d="M599,347 L625,365 L651,378 L599,417 L651,482 L638,521 L690,628"/>
+        <path d="M690,628 L638,521 L599,521 L573,495 L534,477 L470,420 L400,375 L365,352 L352,313 L342,300 L321,271" marker-end="url(#ar)"/>
+      </g>
+      <!-- OUT AND BACK (dashed) -->
+      <g fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-dasharray="7 5" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M256,148 L200,120 L126,92 L110,84"/>
+        <path d="M334,144 L313,110 L295,79 L274,40"/>
+        <path d="M321,271 L253,266 L240,256 L217,256 L160,248 L113,240"/>
+        <path d="M240,256 L230,246 L222,235"/>
+        <path d="M321,271 L331,293 L341,309 L348,340"/>
+      </g>
+      <!-- Umling spur: the extreme leg -->
+      <path d="M690,628 L729,651 L768,677" fill="none" stroke="var(--red)" stroke-width="3" stroke-dasharray="7 5" stroke-linecap="round"/>
+
+      <!-- passes -->
+      <g fill="var(--ink2)">
+        <polygon points="326,232 332,244 320,244"/>
+        <polygon points="651,474 657,486 645,486"/>
+        
+        
+        
+      </g>
+      <polygon points="729,643 735,655 723,655" fill="var(--red)"/>
+      <polygon points="768,667 775,681 761,681" fill="var(--red)"/>
+      <circle cx="274" cy="40" r="5.5" fill="var(--red)"/>
+
+      <!-- overnight stops -->
+      <g fill="var(--surface)" stroke="var(--amber)" stroke-width="2.6">
+        <circle cx="321" cy="271" r="6.5"/><circle cx="256" cy="148" r="6"/>
+        <circle cx="334" cy="144" r="6"/><circle cx="599" cy="347" r="6"/>
+        <circle cx="690" cy="628" r="6"/>
+      </g>
+      <!-- waypoints -->
+      <g fill="var(--ink)">
+        <circle cx="326" cy="240" r="2.6"/><circle cx="339" cy="183" r="2.6"/>
+        <circle cx="295" cy="165" r="2.6"/><circle cx="313" cy="170" r="2.6"/>
+        <circle cx="126" cy="92" r="2.6"/><circle cx="110" cy="84" r="2.6"/>
+        <circle cx="378" cy="204" r="2.6"/><circle cx="456" cy="222" r="2.6"/>
+        <circle cx="482" cy="300" r="2.6"/><circle cx="474" cy="308" r="2.6"/>
+        <circle cx="573" cy="326" r="2.6"/><circle cx="651" cy="378" r="2.6"/>
+        <circle cx="599" cy="417" r="2.6"/><circle cx="638" cy="521" r="2.6"/>
+        <circle cx="599" cy="521" r="2.6"/><circle cx="573" cy="495" r="2.6"/>
+        <circle cx="534" cy="477" r="2.6"/><circle cx="313" cy="110" r="2.6"/><circle cx="295" cy="79" r="2.6"/>
+        <circle cx="352" cy="313" r="2.6"/>
+        <circle cx="342" cy="300" r="2.6"/><circle cx="253" cy="266" r="2.6"/>
+        <circle cx="217" cy="256" r="2.6"/><circle cx="113" cy="240" r="2.6"/>
+        <circle cx="222" cy="235" r="2.6"/><circle cx="240" cy="256" r="2.6"/>
+        <circle cx="331" cy="293" r="2.6"/><circle cx="348" cy="340" r="2.6"/>
+      </g>
+
+      <!-- place labels -->
+      <g class="mono" font-size="11" fill="var(--ink)" font-weight="500">
+        <text x="333" y="279" letter-spacing=".5">LEH</text>
+        <text x="286" y="180" text-anchor="end">Hunder</text>
+        <text x="318" y="165" text-anchor="end">Diskit</text>
+        <text x="262" y="142">THOISE</text>
+        <text x="341" y="140">SUMUR</text>
+        <text x="348" y="180">Khalsar</text>
+        <text x="134" y="98">TURTUK</text>
+        <text x="103" y="78" text-anchor="end">THANG</text>
+        <text x="384" y="200">Agham</text>
+        <text x="462" y="217">Shyok</text>
+        <text x="490" y="298">Durbuk</text>
+        <text x="468" y="320" text-anchor="end">Tangtse</text>
+        <text x="566" y="318" text-anchor="end">Lukung</text>
+        <text x="592" y="340" text-anchor="end">SPANGMIK</text>
+        <text x="658" y="382">Merak</text>
+        <text x="592" y="421" text-anchor="end">Chushul</text>
+        <text x="631" y="530" text-anchor="end">Loma</text>
+        <text x="592" y="516" text-anchor="end">Nyoma</text>
+        <text x="580" y="491">Mahe</text>
+        <text x="528" y="472" text-anchor="end">Chumathang</text>
+        <text x="306" y="118" text-anchor="end">PANAMIK</text>
+        <text x="289" y="75" text-anchor="end">Warshi</text>
+        
+        
+        <text x="679" y="622" text-anchor="end">HANLE</text>
+        
+        
+        
+        <text x="357" y="358" text-anchor="end">Upshi</text>
+        <text x="326" y="284" text-anchor="end">Shey</text>
+        <text x="356" y="344">Hemis</text>
+        <text x="346" y="310" text-anchor="end">Karu</text>
+        <text x="336" y="297" text-anchor="end">Thiksey</text>
+        <text x="248" y="277" text-anchor="end">Nimmu</text>
+        <text x="214" y="252" text-anchor="end">Alchi</text>
+        <text x="107" y="236" text-anchor="end">LAMAYURU</text>
+        <text x="228" y="231">Likir</text>
+        <text x="246" y="264">Basgo</text>
+      </g>
+      <g class="mono" font-size="10" fill="var(--red)" font-weight="600">
+        <text x="764" y="702" text-anchor="end">UMLING LA 5,798 m</text>
+        <text x="268" y="36" text-anchor="end">SIACHEN BASE CAMP</text>
+        <text x="740" y="640">Photi La 5,524</text>
+      </g>
+      <g class="mono" font-size="9.5" fill="var(--muted)">
+        <text x="318" y="213" text-anchor="end">Khardung La 5,359</text>
+        <text x="661" y="478">Tsaga La 4,660</text>
+        
+      </g>
+
+      <!-- leg distances (road km) -->
+      <g class="mono" font-size="10.5" fill="var(--amber-ink)" font-weight="600">
+        <text x="333" y="257">39</text>
+        <text x="349" y="207">57</text>
+        <text x="345" y="163">20</text>
+        <text x="300" y="152" text-anchor="middle">26</text>
+        <text x="228" y="112" text-anchor="middle">64</text>
+        <text x="130" y="108" text-anchor="middle">10</text>
+        <text x="420" y="204" text-anchor="middle">85</text>
+        <text x="480" y="262">43</text>
+        <text x="514" y="308" text-anchor="middle">37</text>
+        <text x="640" y="356" text-anchor="middle">25</text>
+        <text x="639" y="400">40</text>
+        <text x="638" y="452">30</text>
+        <text x="656" y="503">20</text>
+        <text x="676" y="578">50</text>
+        <text x="714" y="630">40</text>
+        <text x="738" y="676" text-anchor="end">33</text>
+        <text x="618" y="513" text-anchor="middle">20</text>
+        <text x="588" y="503">20</text>
+        
+        
+        
+        <text x="551" y="478" text-anchor="middle">15</text>
+        <text x="440" y="432" text-anchor="middle">180</text>
+        <text x="320" y="134" text-anchor="end">22</text>
+        <text x="300" y="52">43</text>
+        <text x="334" y="330" text-anchor="end">45</text>
+        <text x="272" y="281" text-anchor="middle">65</text>
+        <text x="164" y="263" text-anchor="middle">60</text>
+      </g>
+
+      <!-- day badges on the legs -->
+      <g>
+        <g fill="var(--amber)"><circle cx="286" cy="298" r="10"/><circle cx="308" cy="252" r="10"/><circle cx="200" cy="142" r="10"/><circle cx="432" cy="240" r="10"/><circle cx="613" cy="401" r="10"/><circle cx="320" cy="92" r="10"/><circle cx="462" cy="388" r="10"/><circle cx="168" cy="230" r="10"/><circle cx="370" cy="318" r="10"/></g>
+        <circle cx="700" cy="654" r="10" fill="var(--red)"/>
+        <g class="mono" font-size="10" font-weight="600" fill="var(--badge-ink)" text-anchor="middle">
+          <text x="286" y="302">3</text><text x="308" y="256">4</text><text x="200" y="146">5</text>
+          <text x="432" y="244">7</text><text x="613" y="405">8</text><text x="700" y="658">9</text>
+          <text x="320" y="96">6</text><text x="462" y="392">10</text><text x="370" y="322">11</text>
+          <text x="168" y="234">12</text>
+        </g>
+      </g>
+
+      <!-- north + scale -->
+      <g stroke="var(--muted)" stroke-width="1.4" fill="none">
+        <path d="M842,104 L842,66"/><path d="M836,74 L842,64 L848,74"/>
+        <path d="M110,716 L110,722 M251,716 L251,722 M110,719 L251,719"/>
+      </g>
+      <text x="842" y="120" class="mono" font-size="10" fill="var(--muted)" text-anchor="middle">N</text>
+      <text x="180" y="737" class="mono" font-size="10" fill="var(--muted)" text-anchor="middle">50 km straight-line</text>
+    </svg>
+   </div>
+    <div class="legend">
+      <span><i class="sw"></i>onward leg</span>
+      <span><i class="sw dash"></i>out &amp; back, same day</span>
+      <span><i class="dotk"></i>overnight stop</span>
+      <span><i class="trik"></i>pass</span>
+      <span><i class="sw water"></i>lake / river</span>
+      <span><i class="numk">6</i>September date riding that leg</span>
+    </div>
+    <figcaption><b>Numbers on the route are road kilometres between adjacent points</b>, not straight-line distance &#8212; the scale bar at bottom left is straight-line and will disagree with them, which is the point: the Shyok and the Indus decide where the road can go, so every leg is longer than it looks. Badges are September dates, not day numbers. The 2nd is an arrival day and has no leg; the 11th is your fixed Leh day, drawn as the short dashed monastery loop to Shey, Thiksey and Hemis. Umling La is drawn in red because it is the only stretch with no fuel, food, shelter or phone signal along its whole 146 km. Siachen Base Camp, the other red mark, is the northern limit of the trip.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>Figure 2</h2>
+  <p class="lede">Why this order is safe, in one line.</p>
+  <figure>
+   <div class="figscroll">
+    <svg viewBox="0 0 880 350" role="img" aria-label="Altitude profile across eleven days, 2 to 12 September. The amber line shows the highest point reached each day, spiking to Khardung La at 5,359 metres on the 4th and Umling La at 5,798 metres on the 9th. The teal line shows where the group sleeps each night, which stays at 3,500 metres for two days, drops to about 3,100 metres in Nubra for three nights, then rises to 4,250 metres at Pangong and Hanle before returning to Leh.">
+      <!-- acclimatisation band -->
+      <rect x="70" y="40" width="136" height="240" fill="var(--teal-wash)"/>
+      <text x="138" y="58" class="mono" font-size="9.5" fill="var(--teal)" text-anchor="middle" letter-spacing=".1em">48 H IN LEH</text>
+
+      <!-- grid -->
+      <g stroke="var(--hair)" stroke-width="1">
+        <path d="M70,40 L840,40"/><path d="M70,115 L840,115"/><path d="M70,190 L840,190"/><path d="M70,265 L840,265"/>
+      </g>
+      <path d="M70,280 L840,280" stroke="var(--line)" stroke-width="1.4"/>
+      <g class="mono" font-size="10" fill="var(--muted)" text-anchor="end">
+        <text x="60" y="44">6,000 m</text><text x="60" y="119">5,000</text>
+        <text x="60" y="194">4,000</text><text x="60" y="269">3,000</text>
+      </g>
+
+      <!-- highest point reached -->
+      <polyline fill="none" stroke="var(--amber)" stroke-width="2.6" stroke-linejoin="round"
+        points="100,220 171,220 242,88 313,254 384,216 455,171 526,141 597,55 668,171 739,220 810,220"/>
+      <!-- where you sleep -->
+      <polyline fill="none" stroke="var(--teal)" stroke-width="3" stroke-linejoin="round"
+        points="100,228 171,228 242,261 313,254 384,254 455,171 526,171 597,171 668,228 739,228 810,228"/>
+
+      <g fill="var(--amber)">
+        <circle cx="100" cy="220" r="3"/><circle cx="171" cy="220" r="3"/><circle cx="242" cy="88" r="3.5"/>
+        <circle cx="313" cy="254" r="3"/><circle cx="384" cy="216" r="3.5"/><circle cx="455" cy="171" r="3"/>
+        <circle cx="526" cy="141" r="3.5"/><circle cx="668" cy="171" r="3"/>
+        <circle cx="739" cy="220" r="3"/><circle cx="810" cy="220" r="3"/>
+      </g>
+      <circle cx="597" cy="55" r="5" fill="var(--red)"/>
+
+      <g class="mono" font-size="9.5" fill="var(--muted)">
+        <text x="242" y="80" text-anchor="middle">Khardung La</text>
+        <text x="384" y="208" text-anchor="middle">Siachen Base Camp</text>
+        <text x="526" y="133" text-anchor="middle">Tsaga La</text>
+      </g>
+      <text x="597" y="43" class="mono" font-size="11" fill="var(--red)" font-weight="600" text-anchor="middle">UMLING LA 5,798</text>
+
+      <!-- x axis -->
+      <g class="mono" font-size="10.5" fill="var(--muted)" text-anchor="middle">
+        <text x="100" y="299">2</text><text x="171" y="299">3</text><text x="242" y="299">4</text>
+        <text x="313" y="299">5</text><text x="384" y="299">6</text><text x="455" y="299">7</text>
+        <text x="526" y="299">8</text><text x="597" y="299">9</text><text x="668" y="299">10</text>
+        <text x="739" y="299">11</text><text x="810" y="299">12</text>
+        <text x="70" y="299" text-anchor="start" fill="var(--muted)">SEP</text>
+      </g>
+      <g class="mono" font-size="9.5" fill="var(--muted)" text-anchor="middle">
+        <text x="100" y="315">Leh</text><text x="171" y="315">Sham</text><text x="242" y="315">Nubra</text>
+        <text x="313" y="315">Turtuk</text><text x="384" y="315">Siachen</text><text x="455" y="315">Pangong</text>
+        <text x="526" y="315">Hanle</text><text x="597" y="315">Umling</text><text x="668" y="315">Leh</text>
+        <text x="739" y="315">Leh</text><text x="810" y="315">Lamayuru</text>
+      </g>
+
+      <!-- inline key -->
+      <g class="mono" font-size="10.5">
+        <path d="M596,336 L626,336" stroke="var(--amber)" stroke-width="2.6"/>
+        <text x="632" y="340" fill="var(--muted)">highest point reached</text>
+        <path d="M754,336 L784,336" stroke="var(--teal)" stroke-width="3"/>
+        <text x="790" y="340" fill="var(--muted)">where you sleep</text>
+      </g>
+    </svg>
+   </div>
+    <figcaption>The amber line spikes; the teal line creeps. That gap is the whole safety argument. <b>You touch 5,359 m on the 4th but sleep 450 m lower than you did in Leh</b>, and your sleeping altitude never climbs more than about 1,100 m in a single step. Three low nights in Nubra and then two at Hanle mean Umling La is ridden by a body that has had a week to adapt, not a fresh one. This variant also never sleeps above 4,250 m.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>The plan</h2>
+  <p class="lede">Eleven days, three early starts, one fixed day in Leh that doubles as your insurance.</p>
+
+  <div class="days">
+
+    <article class="day">
+      <div class="dnum">02<small>SEP &#183; WED</small></div>
+      <div class="dbody">
+        <h3>Leh &#8212; arrive and do nothing</h3>
+        <div class="meta"><span class="chip">10 km in town</span><span class="chip">sleep 3,500 m</span><span class="chip">max 3,600 m</span></div>
+        <ul>
+          <li>08:00 land at Kushok Bakula Rimpochee. Take an airport taxi; rental bikes cannot be collected airside.</li>
+          <li>Lie flat until about 13:00. No shower, no stairs, no smoking. Four litres of water between now and bed.</li>
+          <li>14:00, walking slowly: Main Bazaar, Jama Masjid, Central Asian Museum.</li>
+          <li>16:00 collect the five bikes and do a proper handover &#8212; brakes, chain slack, tyre tread, tool kit, spare tube, tow rope, jerry can. Test ride three kilometres in town and nothing more.</li>
+          <li>17:30 Shanti Stupa for sunset. Ride up. Do not climb the 500 steps today.</li>
+          <li>Buy tonight: five oxygen cans, five 5-litre jerry cans, spare clutch and accelerator cables, spark plugs, dry fruit.</li>
+          <li>Lights out 22:00. This is the one night you go to bed early.</li>
+        </ul>
+        <div class="note warn"><strong>The real risk of this trip</strong>Flying straight from sea level to 3,500 m is the single most dangerous thing you will do, and it happens on day one. The 2nd and the 3rd exist only to earn Khardung La on the 4th.</div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="dnum">03<small>SEP &#183; THU</small></div>
+      <div class="dbody">
+        <h3>Sham Valley &#8212; deliberately downhill</h3>
+        <div class="meta"><span class="chip">130 km</span><span class="chip">6 h with stops</span><span class="chip">sleep 3,500 m</span><span class="chip">all tarmac</span><span class="chip hi">drops to 2,950 m</span></div>
+        <div class="route">Leh &#8594; Hall of Fame <b>4</b> &#8594; Spituk <b>8</b> &#8594; Gurudwara Pathar Sahib <b>25</b> &#8594; Magnetic Hill <b>30</b> &#8594; Sangam <b>35</b> &#8594; Basgo <b>40</b> &#8594; Likir <b>52</b> &#8594; Leh <b>130</b></div>
+
+        <p>This is the most important day of the trip and the one that looks like a throwaway. You landed yesterday at 3,500 m with roughly two-thirds of the oxygen you are built for. Your body spends the next 48 hours doing two things: breathing faster and deeper without you noticing, and dumping bicarbonate through your kidneys so your blood chemistry stops fighting that new breathing rate. Neither finishes overnight, and neither happens faster because you rested in bed.</p>
+        <p>What does help is <strong>moving gently at a lower altitude and then returning to sleep high</strong>. Sham Valley is the only direction out of Leh that goes <em>down</em>: the road follows the Indus west and loses 550 m by Sangam. You get a full day of easy exercise in thicker air, then come back and sleep at 3,500 m, which is exactly the stimulus you want. Riding east or south instead would take you up, and Khardung La the next morning would be a gamble rather than a plan.</p>
+
+        <h4>How the day runs</h4>
+        <ul>
+          <li><b class="t">08:30</b><strong>Hall of Fame</strong> (km 4). The Army's museum of the Kargil and Siachen operations. Captured Pakistani kit, letters home, and the Siachen gallery with the actual clothing and rations used at 6,000 m. It will change how you look at the soldiers you pass all week. Allow 45 minutes.</li>
+          <li><b class="t">09:45</b><strong>Spituk Gompa</strong> (km 8). 15th-century Gelugpa monastery on a bluff over the Indus, right at the end of the airport runway. Climb to the Vajrabhairava shrine for the view down the valley. 30 minutes.</li>
+          <li><b class="t">10:45</b><strong>Gurudwara Pathar Sahib</strong> (km 25). Built by the Army in 1517 around a boulder said to carry the imprint of Guru Nanak, thrown at him by a demon and softened to wax on impact. Free langar, and by local custom every vehicle stops. Cover your head. 30 minutes.</li>
+          <li><b class="t">11:30</b><strong>Magnetic Hill</strong> (km 30). Put the bike in neutral on the marked patch and it appears to roll uphill. It is a gravity-hill illusion: the horizon is obscured, so a downhill slope reads as an upslope. Fun for ten minutes, and it is on the way.</li>
+          <li><b class="t">12:00</b><strong>Sangam</strong> (km 35), the lowest point of your first four days at 2,950 m. The Zanskar arrives green-grey and the Indus brown, and in early September they run side by side without mixing for a hundred metres before merging. Rafting operators launch from here. Eat lunch at the dhabas by the confluence &#8212; this long, low stop is doing real physiological work, so do not rush it. 75 minutes.</li>
+          <li><b class="t">13:45</b><strong>Basgo</strong> (km 40). Ruined mud-brick fort and citadel, capital of Lower Ladakh until the 1600s and the site of a three-year Mongol siege. Two 16th-century Maitreya temples survive inside, with wall paintings that won a UNESCO conservation award. Almost every tour van drives past it. 45 minutes.</li>
+          <li><b class="t">14:45</b><strong>Likir Gompa</strong> (km 52). Founded 1065, Gelugpa, with a 23 m gold-faced Maitreya sitting outdoors above the valley. The small museum holds thangkas and old costumes. Turn around here. 45 minutes.</li>
+          <li><b class="t">16:00</b>Ride back to Leh, arriving around 17:15. Do not push the pace &#8212; the point today is time in the saddle, not speed.</li>
+          <li><b class="t">18:00</b><strong>Leh Palace</strong>, then up to <strong>Namgyal Tsemo Gompa</strong> for sunset over the Indus valley and the Stok range. Ride up; the walking route is 200 m of vertical you do not need today.</li>
+        </ul>
+
+        <h4>The other job: shake the bikes down</h4>
+        <p>Tonight is the <em>last</em> time you are near a mechanic, a spares shop and a phone signal all at once. After 130 km on a bike you met yesterday, check every one of the five before dinner and get anything doubtful fixed in Leh this evening.</p>
+        <ul>
+          <li>Chain slack and lubrication after a full day of dust.</li>
+          <li>Brake feel front and rear, and pad thickness &#8212; you will be descending Khardung La tomorrow.</li>
+          <li>Tyre pressures and a proper look at the tread and sidewalls.</li>
+          <li>Headlight, tail light, both indicators, horn. You will ride in the dark at some point.</li>
+          <li>Luggage mounts and bungee points under load, not empty.</li>
+          <li>Confirm every bike has its tool roll, spare tube and tow rope actually in it, not promised.</li>
+          <li>Fill all five jerry cans tonight, not at 07:00 tomorrow.</li>
+        </ul>
+        <div class="note plain"><strong>Decision point</strong>If anyone still has a headache tonight that paracetamol will not shift, or is nauseous, or slept badly and woke breathless, then the 4th slips by 24 hours and you repeat a low day. The 11 September buffer exists for exactly this, and using it costs you nothing at all. Going up anyway is how a good trip turns into an evacuation.</div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="dnum">04<small>SEP &#183; FRI</small></div>
+      <div class="dbody">
+        <h3>Leh &#8594; Khardung La &#8594; Nubra</h3>
+        <div class="meta"><span class="chip">143 km</span><span class="chip">7 h</span><span class="chip hi">max 5,359 m</span><span class="chip">sleep Thoise 3,050 m</span><span class="chip mine">your booking, kept</span></div>
+        <div class="route">Leh &#8594; South Pullu <b>25</b> &#8594; <b>KHARDUNG LA 5,359 m</b> <b>39</b> &#8594; North Pullu <b>54</b> &#8594; Khardung village <b>63</b> &#8594; Khalsar <b>96</b> <em>(fuel)</em> &#8594; Diskit <b>117</b> &#8594; Hunder <b>124</b> &#8594; <b>THOISE 143</b></div>
+        <ul>
+          <li>Wheels rolling 08:00. At Khardung La: fifteen minutes, photographs, back on the bike. No jogging about, no press-ups for the camera.</li>
+          <li>Diskit: the 32-metre Maitreya facing down the Shyok toward Pakistan, and the 14th-century gompa on the crag above it.</li>
+          <li>Hunder at km 124: cold-desert dunes and double-humped Bactrian camels, descendants of the Silk Road caravans. Stop here around 17:00 for the light, then ride the last 19 km to Thoise in the dusk.</li>
+        </ul>
+        <div class="note plain"><strong>Your call, and a good one</strong>Thoise puts you 19 km further down the Shyok than Hunder, which takes 38 km off tomorrow &#8212; and tomorrow is your longest Nubra day. You also sleep 450 m lower tonight than you did in Leh, which is what makes a 5,359 m pass on your third day reasonable rather than reckless.</div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="dnum">05<small>SEP &#183; SAT</small></div>
+      <div class="dbody">
+        <h3>Turtuk and Thang <em>the Balti frontier</em></h3>
+        <div class="meta"><span class="chip">215 km</span><span class="chip">8 h</span><span class="chip">sleep Sumur 3,150 m</span><span class="chip">mostly tarmac</span><span class="chip mine">your booking, kept</span></div>
+        <div class="route">Thoise &#8594; Bogdang <b>35</b> &#8594; <b>TURTUK 64</b> &#8594; <b>THANG 74</b> &#8594; back through Thoise <b>148</b> &#8594; Hunder <b>167</b> &#8594; Diskit <b>174</b> &#8594; Khalsar <b>195</b> &#8594; <b>SUMUR 215</b></div>
+        <ul>
+          <li>Turtuk is Balti, and it was Pakistani until 1971. Walk the Yagma and Farol hamlets, the Yagbo royal house, the apricot orchards, and the natural glacier cold-store cut into the rock.</li>
+          <li>Thang is the last village on the Indian side. The viewpoint looks straight across the Line of Control at Franu, which used to be the same village. Register your IDs at the Army post; no drones, and no photographs of installations.</li>
+          <li>The last 67 km, Thoise back through Khalsar and up to Sumur, crosses from the Shyok arm of Nubra into the Nubra arm. It is the price of seeing both sides of the valley, it is all tarmac, and it puts you 20 km from Khalsar for tomorrow &#8212; the same distance Diskit would have.</li>
+          <li>If there is light left when you reach Sumur, Samstanling Gompa is a five-minute walk from the guesthouses.</li>
+        </ul>
+        <div class="note plain"><strong>Note</strong>Lowest, warmest, most oxygen-rich day of the trip &#8212; Thang is 2,700 m &#8212; and also the longest so far at 215 km. Leave Thoise by 07:30 so the retrace to Sumur is not done in the dark. Eat properly and recover: tomorrow is the technical day.</div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="dnum">06<small>SEP &#183; SUN</small></div>
+      <div class="dbody">
+        <h3>Siachen Base Camp <em>the reason this variant exists</em></h3>
+        <div class="meta"><span class="chip">130 km out &amp; back</span><span class="chip">6&#8211;7 h</span><span class="chip">max 3,660 m</span><span class="chip">sleep Sumur 3,150 m</span><span class="chip mine">your booking, kept</span></div>
+        <div class="route">Sumur &#8594; <b>PANAMIK 22</b> &#8594; Warshi <b>45</b> &#8594; <b>SIACHEN BASE CAMP 65</b> &#8594; back to Sumur <b>130</b></div>
+        <ul>
+          <li>Roll at 07:30. It is only 65 km each way, but the checks at Partapur take time and you want the base in the morning light.</li>
+          <li><strong>Panamik at km 22.</strong> Sulphur hot springs too hot to hold a hand in at the source, and the last village on the old caravan road that ran over the Karakoram Pass to Yarkand. This was the far edge of the Central Asian trade until 1950.</li>
+          <li>Through Warshi and up the Nubra toward the snout. Ordinary civilians are turned around at the <strong>OP Baba Shrine</strong>, two to three kilometres short of the base, and never see the glacier at all. This group is not.</li>
+          <li><strong>OP Baba.</strong> The shrine to a soldier who, in the belief of the men posted above, still keeps watch on the glacier. Every soldier going up reports in, and every one coming down reports back. It is not a viewpoint and it is not treated as one.</li>
+          <li>At Base Camp, the memorial. Read it slowly. This is the highest battlefield on earth and most of the names were not taken by an enemy &#8212; they were taken by cold, altitude, crevasses and avalanche.</li>
+          <li><strong>Not negotiable:</strong> photograph only what you are told you may. No drones at all. Nothing of installations, positions, aircraft or personnel without explicit permission. You are guests inside a working operational formation and the rules are theirs, not yours.</li>
+          <li>Back at Sumur by mid-afternoon. Samstanling Gompa is a five-minute walk from the guesthouses. Early night.</li>
+        </ul>
+        <div class="note plain"><strong>Why this day is placed here</strong>Base Camp is 3,660 m, only 500 m above where you sleep, so physiologically this is a rest day that happens to cover 130 km. That matters: it sits between a 215 km day and the Shyok crossing, and it is the last easy day you get before the altitude starts in earnest.</div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="dnum">07<small>SEP &#183; MON</small></div>
+      <div class="dbody">
+        <h3>Shyok valley to Pangong <em>leave at 07:00</em></h3>
+        <div class="meta"><span class="chip">160 km</span><span class="chip">6&#8211;7 h</span><span class="chip rough">60 km rough + water crossings</span><span class="chip hi">sleep Spangmik 4,250 m</span><span class="chip mine">your booking, kept</span></div>
+        <div class="route">Sumur &#8594; Khalsar <b>20</b> <em>(fuel to the brim + jerry cans)</em> &#8594; Agham <b>40</b> &#8594; Shyok village <b>80</b> &#8594; Durbuk <b>123</b> &#8594; Tangtse <b>133</b> &#8594; Lukung <b>153</b> &#8594; <b>SPANGMIK 160</b></div>
+        <ul>
+          <li>You said you were ready to start early on the 7th. Exactly right &#8212; in this variant the crossings fall on <strong>the 7th</strong>, and the 07:00 departure is not a suggestion. The nallahs between Agham and Shyok are ankle-deep in the morning and knee-deep torrents rolling loose boulders by 13:00, once the sun has been on the glaciers for six hours.</li>
+          <li>Stop at Agham and flag down two vehicles coming the other way. Ask them about the crossings before you commit to the valley.</li>
+          <li>Crossing technique: first gear, feet on the pegs, steady throttle, no clutch, no braking. One bike at a time with a spotter already on the far bank.</li>
+          <li>Arrive Spangmik mid-afternoon and get the lake at golden hour, which is the only hour it is worth photographing.</li>
+        </ul>
+        <div class="note warn"><strong>Highest AMS risk of the trip</strong>First night above 4,000 m after a long, cold, wet day. No alcohol. If anyone worsens overnight, Tangtse at 4,000 m is 35 km back down the road and Leh is reachable over Chang La.</div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="dnum">08<small>SEP &#183; TUE</small></div>
+      <div class="dbody">
+        <h3>Pangong &#8594; Chushul &#8594; Hanle</h3>
+        <div class="meta"><span class="chip">165 km</span><span class="chip">6&#8211;7 h</span><span class="chip hi">max 4,660 m</span><span class="chip">sleep Hanle 4,250 m</span></div>
+        <div class="route">Spangmik &#8594; Man <b>12</b> &#8594; Merak <b>25</b> &#8594; <b>CHUSHUL 65</b> &#8594; <b>TSAGA LA 4,660 m 95</b> &#8594; Loma <b>115</b> &#8594; <b>HANLE 165</b></div>
+        <ul>
+          <li>Ride the full southern shore in the morning. Man and Merak are the Pangong that day-trippers from Leh never see, and the water changes colour every twenty minutes.</li>
+          <li>Rezang La memorial at Chushul: 114 men of 13 Kumaon, November 1962, Major Shaitan Singh, Param Vir Chakra. Worth the twenty minutes it costs you.</li>
+          <li>Spangmik to Tsaga La is dirt and gravel. After Tsaga La it turns into clean BRO tarmac and stays that way.</li>
+          <li>Hanle: the Indian Astronomical Observatory on Mount Saraswati at 4,500 m, and the MACE gamma-ray telescope beside it. India's first Dark Sky Reserve &#8212; the Milky Way is naked-eye from about 21:00, and the astro-homestays have telescopes.</li>
+        </ul>
+        <div class="note warn"><strong>Two things to verify before you ride this</strong>The Chushul stretch sits on a sensitive part of the Line of Actual Control and is occasionally closed to civilians at short notice &#8212; confirm with your rental agency in Leh. And if any of the five of you holds a foreign passport or an OCI card, this leg is closed to you outright: permits are not issued beyond Man&#8211;Merak.</div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="dnum">09<small>SEP &#183; WED</small></div>
+      <div class="dbody">
+        <h3>Umling La 5,798 m <em>the summit day</em></h3>
+        <div class="meta"><span class="chip">150 km out &amp; back</span><span class="chip">7&#8211;8 h</span><span class="chip rough">max 5,798 m</span><span class="chip">sleep Hanle 4,250 m</span></div>
+        <div class="route">Hanle &#8594; <b>PHOTI LA 5,524 m 40</b> &#8594; <b>UMLING LA 5,798 m 73</b> &#8594; back to Hanle</div>
+        <ul>
+          <li>Wheels rolling 06:30 &#8212; the one genuinely early start of the trip. Wind at 5,800 m in the afternoon is dangerous rather than merely unpleasant, and the morning light is better anyway.</li>
+          <li>146 km with no fuel, no food, no shelter, no habitation and no signal. Full tank plus jerry cans, all your water, every layer you own.</li>
+          <li>At the top: fifteen minutes maximum. Leave engines idling so they restart, walk instead of running, one oxygen can per bike within arm's reach.</li>
+          <li>Nobody rides alone today. Nominate a sweep rider who stays last and counts heads at every stop.</li>
+          <li>Back in Hanle by mid-afternoon. Second night in the same bed, nothing to repack, and the sky again after dark.</li>
+        </ul>
+        <div class="note plain"><strong>Fallback</strong>If the BRO or the Army has shut the final stretch, ride Photi La instead and spend the afternoon on the observatory and the village. The 10th is untouched either way. Ask at the Loma checkpost on the 8th so you know before you commit.</div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="dnum">10<small>SEP &#183; THU</small></div>
+      <div class="dbody">
+        <h3>Hanle &#8594; Chumathang &#8594; Leh</h3>
+        <div class="meta"><span class="chip">250 km</span><span class="chip">8 h</span><span class="chip">max 4,250 m</span><span class="chip">sleep Leh 3,500 m</span><span class="chip">good tarmac throughout</span></div>
+        <div class="route">Hanle &#8594; Loma <b>50</b> &#8594; <b>NYOMA 70</b> <em>(fuel &#8212; last pump for 155 km)</em> &#8594; Mahe Bridge <b>90</b> &#8594; <b>CHUMATHANG 105</b> &#8594; Upshi <b>205</b> &#8594; Karu <b>225</b> <em>(fuel)</em> &#8594; Thiksey <b>235</b> &#8594; <b>LEH 250</b></div>
+        <ul>
+          <li>07:00 start. The longest day of this variant, and by a distance the easiest surface &#8212; you are on tarmac the whole way, following the Indus downstream from the Changthang plateau back into the Leh valley.</li>
+          <li>Watch the Nyoma to Mahe stretch for <strong>kiang</strong>, the Tibetan wild ass, which run in herds on the flats and will pace a motorcycle if you let them.</li>
+          <li><strong>Chumathang at km 105</strong>, almost exactly halfway. Geothermal springs on the bank of the Indus, hot enough to steam in the open air, with bathing pools built beside the river. Take the long lunch here; you have earned it and nothing is chasing you.</li>
+          <li>From Upshi you rejoin the Leh&#8211;Manali highway and the last 45 km are fast. Thiksey Gompa is at km 235 if you have the light for it, though you get another chance tomorrow.</li>
+          <li>Into Leh around 17:00. Six days out, and every one of them delivered.</li>
+        </ul>
+        <div class="note warn"><strong>Fuel</strong>Nyoma at km 70 is the only pump between Hanle and Karu at km 225. That is a 155 km dry run. Fill the tank and every jerry can at Nyoma even if you think you do not need to.</div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="dnum">11<small>SEP &#183; FRI</small></div>
+      <div class="dbody">
+        <h3>Leh &#8212; your fixed day, and the buffer</h3>
+        <div class="meta"><span class="chip">0&#8211;45 km</span><span class="chip">sleep 3,500 m</span></div>
+        <ul>
+          <li>Whatever it is you need to be in Leh for on the 11th.</li>
+          <li>Around it: bike service and an oil top-up after 1,300 km, laundry, Leh Palace, the Hall of Fame if you skipped it, and Main Bazaar for pashmina, dried apricots and Ladakhi socks.</li>
+          <li>An easy 45 km if you want it: Shey Palace, Thiksey Gompa, Stakna, Hemis. Thiksey's morning prayers start around 06:30 and are the best hour in the Indus valley.</li>
+          <li>Want a pass instead? Leh &#8594; Sakti &#8594; Chang La 5,360 m &#8594; back is 150 km of good tarmac and the one trophy pass this route never crosses.</li>
+        </ul>
+        <div class="note plain"><strong>This day is also the insurance policy</strong>Weather, a washed-out crossing, a seized engine, one person with altitude sickness &#8212; any single lost day earlier in the trip gets absorbed here and the itinerary still closes on time. Do not spend it in advance.</div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="dnum">12<small>SEP &#183; SAT</small></div>
+      <div class="dbody">
+        <h3>Alchi, Wanla, Lamayuru</h3>
+        <div class="meta"><span class="chip">250 km out &amp; back</span><span class="chip">8 h</span><span class="chip">all tarmac</span><span class="chip">sleep 3,500 m</span></div>
+        <div class="route">Leh &#8594; Nimmu <b>35</b> &#8594; <b>ALCHI 65</b> &#8594; Uleytokpo <b>80</b> <em>(Rizong +5)</em> &#8594; Khaltse <b>95</b> &#8594; <b>WANLA 115</b> &#8594; <b>LAMAYURU 125</b> &#8594; back to Leh</div>
+        <ul>
+          <li>Alchi Choskor holds 11th- and 12th-century Kashmiri-school murals, the oldest surviving paintings in Ladakh. Nothing else in the region looks remotely like them, and they survived because Alchi was abandoned rather than renovated.</li>
+          <li>Wanla: a 10th-century three-storey Avalokiteshvara temple that almost nobody stops for.</li>
+          <li>Lamayuru: Yuru Gompa on its spur above the Moonland badlands. Shoot the badlands on the way back, in late-afternoon light.</li>
+          <li>Back in Leh by 19:00. Return the bikes, settle the rental, pack tonight rather than at 05:00.</li>
+        </ul>
+        <div class="note plain"><strong>The tempting alternative</strong>The Wari La loop &#8212; Leh &#8594; Sakti &#8594; Wari La 5,312 m &#8594; Khalsar &#8594; Khardung La &#8594; Leh, 270 km &#8212; is a better ride and a worse idea the day before a flight. A dirt pass at 5,300 m with no buffer day behind it is how people miss aeroplanes.</div>
+      </div>
+    </article>
+
+    <article class="day">
+      <div class="dnum">13<small>SEP &#183; SUN</small></div>
+      <div class="dbody">
+        <h3>Out</h3>
+        <ul>
+          <li>Leh departures run 06:30 to 11:00 and the airport wants you two hours early for a full security sweep. Take a taxi.</li>
+          <li>Plan nothing this morning. Leh cancels for weather more often than any other Indian airport its size, and you will want the day uncommitted.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <h2>Your clock</h2>
+  <p class="lede">You asked for 08:00 starts. Eight of eleven days give you that.</p>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Date</th><th>Wheels rolling</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td class="n">2 Sep</td><td class="n">&#8212;</td><td>Lights out 22:00. The only early night, and it is not negotiable.</td></tr>
+        <tr><td class="n">3, 4, 5, 8, 12 Sep</td><td class="n">08:00</td><td>Matches your rhythm exactly. In by 18:00&#8211;19:00, dinner, bed by midnight.</td></tr>
+        <tr><td class="n">6 Sep</td><td class="n">07:30</td><td>Siachen. Short day, but the checks at Partapur are slow and you want the base in morning light.</td></tr>
+        <tr><td class="n hot">7 Sep</td><td class="n hot">07:00</td><td><strong>The Agham&#8211;Shyok nallahs flood from about 13:00.</strong> This one costs you an hour of sleep and buys you a safe crossing.</td></tr>
+        <tr><td class="n hot">9 Sep</td><td class="n hot">06:30</td><td><strong>Umling La.</strong> Afternoon wind at 5,800 m, and 146 km with nothing on it.</td></tr>
+        <tr><td class="n hot">10 Sep</td><td class="n hot">07:00</td><td>250 km, the longest day &#8212; but all tarmac, and Chumathang is a proper halfway stop.</td></tr>
+        <tr><td class="n">11 Sep</td><td class="n">whenever</td><td>Sleep in. You have earned it and there is nowhere to be.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Passes</h2>
+  <p class="lede">Four above 4,600 m, in the order you meet them.</p>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Pass</th><th>Altitude</th><th>Day</th><th>Surface</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Khardung La</strong></td><td class="n">5,359 m</td><td class="n">4 Sep</td><td>Tarmac, broken in patches near the top</td></tr>
+        <tr><td><strong>Tsaga La</strong></td><td class="n">4,660 m</td><td class="n">8 Sep</td><td>Gravel up, tarmac down the far side</td></tr>
+        <tr><td><strong>Photi La</strong></td><td class="n">5,524 m</td><td class="n">9 Sep</td><td>Mixed tarmac and dirt</td></tr>
+        <tr><td class="hot"><strong>Umling La</strong></td><td class="n hot">5,798 m</td><td class="n">9 Sep</td><td>Excellent BRO tarmac, savagely steep and thin</td></tr>
+        
+        
+        
+      </tbody>
+    </table>
+  </div>
+  <p class="col" style="font-size:15px;color:var(--muted)">Tanglang La (5,328 m), Chang La (5,360 m) and Wari La (5,312 m) are the famous passes this route never crosses, because you enter Pangong up the Shyok and leave it through Chushul. Both are available as day rides on the 11th or 12th if you want the collection complete.</p>
+</section>
+
+<section>
+  <h2>Fuel</h2>
+  <p class="lede">The one logistics failure that actually strands you.</p>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Leg</th><th>Fill at</th><th>Longest stretch with nothing</th></tr></thead>
+      <tbody>
+        <tr><td>Leh &#8594; Nubra <span class="n">(4 Sep)</span></td><td>Leh, then the Khalsar pump</td><td class="n">85 km</td></tr>
+        <tr><td>Nubra north arm <span class="n">(6 Sep)</span></td><td>Khalsar or Sumur before you set off</td><td class="n">130 km round trip, nothing past Sumur</td></tr>
+        <tr><td>Sumur &#8594; Pangong <span class="n">(7 Sep)</span></td><td>Khalsar &#8212; brim plus every jerry can</td><td class="n">105 km to loose petrol at Durbuk</td></tr>
+        <tr><td>Pangong &#8594; Hanle <span class="n">(8 Sep)</span></td><td>Loose petrol at Spangmik or Merak</td><td class="n">165 km</td></tr>
+        <tr><td class="hot">Hanle &#8594; Umling La &#8594; Hanle <span class="n">(9 Sep)</span></td><td>Hanle loose petrol, plus full cans</td><td class="n hot">146 km, absolutely nothing on it</td></tr>
+        <tr><td class="hot">Hanle &#8594; Leh <span class="n">(10 Sep)</span></td><td><strong>Nyoma pump</strong> at km 70</td><td class="n hot">155 km to the Karu pump</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slab calm">
+    <h4>Standing rule</h4>
+    <ul>
+      <li>One 5-litre jerry can per bike, full, every time you leave Khalsar, Sumur, Hanle or Nyoma.</li>
+      <li>A Himalayan 450 carries 17 litres. Plan on <strong>350 km of usable range</strong>, not the 500 the spec sheet implies &#8212; low gears, rough surfaces and thin air all cost you.</li>
+      <li>Loose petrol is sold at Durbuk, Spangmik, Merak, Nyoma, Hanle and Karzok at a premium of &#8377;20&#8211;40 a litre. It is a fallback, never a plan.</li>
+      <li>Never let any bike in the group go below a quarter tank in Changthang. The group's range is the range of its emptiest bike.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Permits</h2>
+  <p class="lede">This changed recently. If you read a 2023 blog, it will send you to the wrong office.</p>
+  <div class="slab calm">
+    <h4>What you actually need in 2026</h4>
+    <ul>
+      <li>Indian nationals no longer need a separate Inner Line Permit. One <strong>Ladakh Environment &amp; Health Fee</strong> receipt, bought online at <strong>lahdclehpermit.in</strong>, covers Nubra, Pangong, Chushul, Hanle, Umling La, Tso Moriri and Tso Kar.</li>
+      <li>Cost for an 11-day trip: &#8377;400 environment fee (one-time) + &#8377;20 per day wildlife fee &times; 11 + &#8377;50 Red Cross = <strong>about &#8377;670 per person</strong>. Valid three weeks.</li>
+      <li><strong>Print twelve copies each.</strong> Checkposts keep one and there are more of them than you expect: South Pullu, Khardung La, Khalsar, Diskit, Turtuk, Thang, Durbuk, Tangtse, Chushul, Loma, Hanle, Sumdo, Karzok.</li>
+      <li>Also carry: original driving licence, twelve photocopies of Aadhaar or another photo ID, six passport photographs each, and the bike's RC, insurance and PUC.</li>
+    </ul>
+  </div>
+  <div class="slab">
+    <h4>If anyone in the group is not an Indian national</h4>
+    <ul>
+      <li>Foreign passport holders and OCI card holders need a Protected Area Permit through a registered Leh agent, in a group of at least two, and are <strong>not permitted beyond Man&#8211;Merak on Pangong</strong>.</li>
+      <li>That closes the entire Chushul &#8594; Tsaga La &#8594; Loma &#8594; Hanle leg, which means Umling La has to be reached from Leh via Chumathang instead, and the 7th disappears.</li>
+      <li>Tell me now if this applies to anyone and I will rebuild days 5 to 9 around Chang La and the Indus road.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Altitude</h2>
+  <p class="lede">Read this part properly. It is the only section where being wrong costs someone their life.</p>
+  <div class="slab">
+    <h4>Non-negotiable</h4>
+    <ul>
+      <li><strong>48 hours in Leh before anything high.</strong> Days 1 and 2 are that. They are not padding and they are not optional.</li>
+      <li>Four to five litres of water a day. No alcohol until you are back in Leh on the 10th. Never a sleeping pill at altitude &#8212; it suppresses the breathing reflex you are relying on.</li>
+      <li>Acetazolamide 125&#8211;250 mg twice daily, starting 24 hours before you go up. <strong>Get a doctor to sign off before you leave home</strong>: it is a sulpha drug and a diuretic, and it interacts with things.</li>
+      <li>Never sleep higher than last night if you already have symptoms. Descent is the only actual treatment; oxygen and drugs only buy you time to descend.</li>
+      <li>Headache plus nausea plus breathlessness at rest means go down, tonight, not in the morning.</li>
+      <li><strong>Breathless lying still, a gurgling chest, or pink froth</strong> is HAPE. <strong>Confusion, or an inability to walk a straight line</strong> is HACE. Both are emergencies: descend immediately, put them on oxygen, and evacuate.</li>
+      <li>Medical points: SNM Hospital in Leh, and Army or civil aid posts at Diskit, Tangtse, Nyoma, Hanle and Karu. Emergency number 112.</li>
+      <li>Carry: five oxygen cans, Diamox, Dolo 650, twenty sachets of ORS, Avomine, Pantoprazole, Norflox-TZ, Betadine, a crepe bandage.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Kit, cash, signal</h2>
+  <div class="grid2">
+    <div>
+      <div class="slab calm">
+        <h4>Bikes and spares</h4>
+        <ul>
+          <li>Five Himalayan 450s, roughly &#8377;2,500&#8211;3,500 a day. Only <strong>Ladakh-registered (LA) bikes</strong> may legally be rented for use here &#8212; check the RC before you pay a deposit.</li>
+          <li>Group kit: two tow ropes, two spare tubes, puncture kit, tyre levers, foot pump, spare clutch and accelerator cables, spark plugs, chain lube, one litre of engine oil, duct tape, cable ties, bungee straps, a headlamp each.</li>
+          <li>Two genuinely waterproof dry bags per bike. "Water resistant" means nothing at a nallah crossing.</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="slab calm">
+        <h4>On the body</h4>
+        <ul>
+          <li>Full-face helmet with a clear <em>and</em> a tinted visor, armoured jacket, knee guards, riding gloves plus waterproof over-gloves, boots that cover the ankle.</li>
+          <li>Two sets of merino thermals, fleece, down jacket, windproof and waterproof shell, rain pants, balaclava, buff, wool cap.</li>
+          <li>UV400 sunglasses, SPF 50 reapplied through the day, SPF lip balm. UV at 5,000 m burns you through cloud and through a visor.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="slab calm">
+    <h4>Money and signal</h4>
+    <ul>
+      <li>ATMs work reliably only in Leh. Carry <strong>&#8377;20,000 cash each</strong>. UPI stops working past Leh and camps in Changthang want notes.</li>
+      <li><strong>Prepaid SIMs from other circles do not work in Ladakh at all.</strong> You need postpaid. Jio and Airtel postpaid cover Leh, Nubra and patches of Pangong; get <strong>one BSNL postpaid</strong> in the group for Hanle and Changthang.</li>
+      <li>No signal whatsoever: the Shyok valley, Tsaga La, the whole Umling La road, most of Karzok. Agree a rendezvous point and a turnaround time before every leg.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Cost</h2>
+  <p class="lede">Per person, excluding flights, at the mid-range comfort level you picked.</p>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>Item</th><th>Per person</th><th>Basis</th></tr></thead>
+      <tbody>
+        <tr><td>Himalayan 450, 11 days</td><td class="n">&#8377;30,000</td><td>One bike each at &#8377;2,800/day</td></tr>
+        <tr><td>Fuel</td><td class="n">&#8377;6,000</td><td>1,610 km at 30 kmpl, &#8377;110/litre</td></tr>
+        <tr><td>Stays</td><td class="n">&#8377;15,000</td><td>11 nights, five people across two or three rooms</td></tr>
+        <tr><td>Food</td><td class="n">&#8377;14,000</td><td>12 days at &#8377;1,200</td></tr>
+        <tr><td>Permit and entry fees</td><td class="n">&#8377;1,500</td><td>Environment fee plus monastery tickets</td></tr>
+        <tr><td>Oxygen, medicines, spares, repairs, tips</td><td class="n">&#8377;5,000</td><td>Contingency, and you will use some of it</td></tr>
+        <tr><td><strong>Total</strong></td><td class="n"><strong>&#8377;70,000&#8211;80,000</strong></td><td>Add flights</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Not covered</h2>
+  <p class="lede">Worth knowing, so nobody discovers it on the 9th and feels cheated.</p>
+  <div class="tscroll">
+    <table>
+      <thead><tr><th>What you miss</th><th>Why it did not fit</th></tr></thead>
+      <tbody>
+        <tr><td class="hot"><strong>Tso Moriri, Tso Kar and Startsapuk Tso</strong>, with Polokongka La and Tanglang La</td><td class="hot">This is what the Siachen day costs you. All three lakes and both passes are reachable from Leh on any future trip, on ordinary roads, without anyone's help.</td></tr>
+        <tr><td><strong>Kargil, Drass, and all of Zanskar</strong> &#8212; Padum, Phugtal, Rangdum, Penzila</td><td>Its own six-day trip. Squeezing it in would cost you the eastern lakes and Umling La both.</td></tr>
+        <tr><td><strong>Dah and Hanu</strong> &#8212; the Brokpa villages &#8212; and Batalik</td><td>320 km round trip from Leh with nothing else on the way.</td></tr>
+        <tr><td><strong>Chang La, Wari La and Tanglang La</strong></td><td>A consequence of entering Pangong up the Shyok, leaving via Chushul, and coming home down the Indus. All three are day rides from Leh. If you want one back, Leh &#8594; Rumtse &#8594; Tanglang La &#8594; Tso Kar and return is about 330 km of mostly tarmac and would fit the 12th instead of Lamayuru.</td></tr>
+        <tr><td><strong>Markha valley trek, Zanskar rafting</strong></td><td>Different trip entirely. You are on bikes.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Next 48 hours</h2>
+  <p class="lede">You fly on the 2nd. These four things decide whether the plan survives contact.</p>
+  <ol class="checks">
+    <li><strong>Book five Himalayan 450s.</strong> September is still peak season in Leh and five matching bikes go fast. Confirm they are LA-registered.</li>
+    <li><strong>Buy the environment fee</strong> at lahdclehpermit.in. Five minutes, about &#8377;670 each, then print twelve copies per person and put them in a waterproof pouch.</li>
+    <li><strong>Add one booking and drop one.</strong> Every stay you have confirmed stands. Book a <strong>second Hanle night for the 9th</strong> &#8212; a few dozen beds in the village and no alternative within 100 km, so do this first. Then release the pending Karzok booking.</li>
+    <li><strong>Confirm three things:</strong> that the Chushul&#8211;Tsaga La road is open to civilians, that the last stretch to Umling La is open, and that Base Camp access on the 6th is arranged and confirmed rather than assumed. The first two can shut at short notice; the third is the whole reason for this variant.</li>
+  </ol>
+</section>
+
+<footer>
+  Distances are road kilometres and will vary by a few percent with diversions and detours.<br>
+  Permit rules, road status and the Chushul and Umling La access positions were checked against 2026 sources on 28 August 2026 &#8212; reconfirm locally in Leh before you ride.<br>
+  Altitudes are the commonly cited figures; several passes are signposted higher than they survey.
+</footer>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Ladakh, September 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --paper:#E8E9E6; --surface:#F4F5F2; --surface2:#DDDFDA; --sunken:#D2D5CF;
+  --ink:#191D1C; --ink2:#3B4240; --muted:#5E6661; --line:#C4C9C2; --hair:#D6D9D3;
+  --amber:#A9670F; --amber-ink:#8A5309; --amber-wash:#EBDCC0;
+  --teal:#166A72; --teal-wash:#CDDFE1;
+  --red:#98301F; --red-wash:#EDD5CF;
+  --badge-ink:#FBFAF7;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1110; --surface:#161B19; --surface2:#1E2523; --sunken:#101514;
+    --ink:#E2E7E3; --ink2:#BEC6C1; --muted:#8A948E; --line:#2B3330; --hair:#222927;
+    --amber:#E0A24A; --amber-ink:#EDB86A; --amber-wash:#38290F;
+    --teal:#63B4B9; --teal-wash:#12302F;
+    --red:#E08672; --red-wash:#3A1F19;
+    --badge-ink:#0D1110;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1110; --surface:#161B19; --surface2:#1E2523; --sunken:#101514;
+  --ink:#E2E7E3; --ink2:#BEC6C1; --muted:#8A948E; --line:#2B3330; --hair:#222927;
+  --amber:#E0A24A; --amber-ink:#EDB86A; --amber-wash:#38290F;
+  --teal:#63B4B9; --teal-wash:#12302F;
+  --red:#E08672; --red-wash:#3A1F19;
+  --badge-ink:#0D1110;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:17px; line-height:1.62; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px; margin:0 auto; padding:0 22px 90px}
+.col{max-width:66ch}
+
+h1,h2,h3,h4,.dispn{font-family:Oswald,"Arial Narrow",Impact,sans-serif; font-weight:500; letter-spacing:.005em}
+.mono,td.n,.km,.alt{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
+
+/* ---------- masthead ---------- */
+header.mast{border-bottom:2px solid var(--ink); padding:52px 0 22px; margin-bottom:34px}
+.kicker{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--amber); margin:0 0 14px}
+h1{font-size:clamp(46px,9vw,88px); line-height:.94; margin:0 0 10px; text-transform:uppercase; text-wrap:balance; font-weight:600}
+.sub{font-size:19px; color:var(--ink2); margin:0 0 30px; max-width:56ch}
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(132px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line)}
+.stat{background:var(--surface); padding:14px 16px}
+.stat b{display:block; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; font-size:26px; font-weight:600; line-height:1.1; color:var(--ink)}
+.stat span{display:block; font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); margin-top:5px}
+
+/* ---------- sections ---------- */
+section{margin:56px 0 0}
+h2{font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--amber); margin:0 0 6px; font-weight:600}
+h2 + .lede{font-size:26px; line-height:1.28; margin:0 0 26px; max-width:34ch; text-wrap:balance; font-family:Oswald,sans-serif; font-weight:400; text-transform:none; color:var(--ink)}
+p{margin:0 0 15px}
+a{color:var(--amber); text-decoration-thickness:1px; text-underline-offset:2px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--amber); outline-offset:3px}
+
+/* ---------- figures ---------- */
+figure{margin:0 0 40px; border:1px solid var(--line); background:var(--surface); padding:20px 20px 0}
+.figscroll{overflow-x:auto}
+figure svg{display:block; width:100%; min-width:620px; height:auto}
+figcaption{border-top:1px solid var(--hair); margin-top:14px; padding:13px 0 18px; font-size:14.5px; color:var(--muted); max-width:76ch}
+figcaption b{color:var(--ink2); font-weight:600}
+
+.legend{display:flex; flex-wrap:wrap; gap:8px 22px; padding:14px 0 0; font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted); letter-spacing:.03em}
+.legend span{display:flex; align-items:center; gap:7px}
+.sw{width:26px; height:0; border-top:2.5px solid var(--amber); flex:none}
+.sw.dash{border-top-style:dashed}
+.sw.water{border-top:3px solid var(--teal); opacity:.75}
+.dotk{width:11px;height:11px;border-radius:50%;border:2.5px solid var(--amber);background:var(--surface);flex:none}
+.trik{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:10px solid var(--ink2);flex:none}
+.numk{width:16px;height:16px;border-radius:50%;background:var(--amber);color:var(--badge-ink);font-size:9.5px;display:flex;align-items:center;justify-content:center;flex:none;font-weight:600}
+
+/* ---------- day cards ---------- */
+.days{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--ink)}
+.day{border-bottom:1px solid var(--line); padding:24px 0 28px; display:grid; grid-template-columns:74px 1fr; gap:0 26px}
+.dnum{font-family:Oswald,sans-serif; font-size:44px; line-height:.8; color:var(--amber); font-weight:600}
+.dnum small{display:block; font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.09em; color:var(--muted); margin-top:9px; font-weight:400; text-transform:uppercase; line-height:1.4}
+.dbody h3{font-size:23px; margin:0 0 12px; text-transform:uppercase; letter-spacing:.02em; line-height:1.18; color:var(--ink)}
+.dbody h3 em{font-style:normal; color:var(--red); text-transform:none; font-family:"Source Serif 4",serif; font-size:16px; letter-spacing:0}
+.meta{display:flex; flex-wrap:wrap; gap:6px; margin:0 0 15px}
+.chip{font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.04em; padding:4px 9px; background:var(--surface2); color:var(--ink2); border-radius:2px}
+.chip.hi{background:var(--amber-wash); color:var(--amber-ink)}
+.chip.rough{background:var(--red-wash); color:var(--red)}
+.chip.mine{background:var(--teal-wash); color:var(--teal); font-weight:600}
+.route{font-family:"IBM Plex Mono",monospace; font-size:12.5px; line-height:1.95; color:var(--ink2); background:var(--sunken); padding:11px 13px; margin:0 0 16px; border-left:3px solid var(--amber); overflow-wrap:anywhere}
+.route b{color:var(--ink); font-weight:600}
+.dbody ul{margin:0 0 14px; padding-left:19px}
+.dbody li{margin-bottom:7px}
+.note{border-left:3px solid var(--line); padding:2px 0 2px 14px; font-size:15.5px; color:var(--ink2)}
+.note.warn{border-left-color:var(--red)}
+.note strong{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--red); display:block; margin-bottom:3px; font-weight:600}
+.note.plain strong{color:var(--muted)}
+.dbody li b.t{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;color:var(--amber-ink);margin-right:8px;font-weight:600}
+.dbody h4{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin:20px 0 9px;font-weight:600}
+
+/* ---------- tables ---------- */
+.tscroll{overflow-x:auto; margin:0 0 26px; border:1px solid var(--line)}
+table{border-collapse:collapse; width:100%; min-width:480px; background:var(--surface)}
+th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--hair); font-size:15px; vertical-align:top}
+th{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); background:var(--surface2); border-bottom:1px solid var(--line); font-weight:600; white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.n{white-space:nowrap; color:var(--ink2)}
+td strong{font-weight:600}
+.hot{color:var(--red); font-weight:600}
+
+/* ---------- callout ---------- */
+.slab{background:var(--surface); border:1px solid var(--line); border-top:3px solid var(--red); padding:24px 26px; margin:0 0 28px}
+.slab h4{font-size:15px; letter-spacing:.09em; text-transform:uppercase; margin:0 0 12px; color:var(--red)}
+.slab.calm{border-top-color:var(--amber)}
+.slab.calm h4{color:var(--amber)}
+.slab ul{margin:0; padding-left:19px}
+.slab li{margin-bottom:8px}
+.slab li:last-child{margin-bottom:0}
+
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:24px}
+.checks{list-style:none; padding:0; margin:0; counter-reset:c}
+.checks li{counter-increment:c; padding-left:38px; position:relative; margin-bottom:14px}
+.checks li::before{content:counter(c); position:absolute; left:0; top:1px; width:24px; height:24px; border-radius:50%; background:var(--amber); color:var(--badge-ink); font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:600; display:flex; align-items:center; justify-content:center}
+
+footer{margin-top:70px; padding-top:22px; border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace; font-size:11.5px; color:var(--muted); letter-spacing:.04em; line-height:1.8}
+
+@media (max-width:620px){
+  body{font-size:16px}
+  .day{grid-template-columns:1fr; gap:0}
+  .dnum{font-size:30px; margin-bottom:14px; display:flex; align-items:baseline; gap:12px}
+  .dnum small{margin-top:0}
+  header.mast{padding-top:34px}
+  figure{padding:14px 14px 0}
+}
+@media print{
+  body{background:#fff; color:#000}
+  figure,.slab,.tscroll{break-inside:avoid}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+</style></head><body>
+<div class="wrap">
+<header class="mast">
+  <p class="kicker">2 &#8211; 13 September 2026 &nbsp;&#183;&nbsp; five riders, five bikes</p>
+  <h1>Ladakh<br>September 2026</h1>
+  <p class="sub">Two complete plans for the same eleven days. Eight of those days are identical in both. They differ over one spare day, and the group needs to pick which way it goes.</p>
+  <div class="stats">
+    <div class="stat"><b>11</b><span>riding days</span></div>
+    <div class="stat"><b>~1,645</b><span>km, either way</span></div>
+    <div class="stat"><b>5,798</b><span>metres at Umling La</span></div>
+    <div class="stat"><b>1</b><span>day in dispute</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>The question</h2>
+  <p class="lede">Seven riding days between leaving Leh and returning. The circuit fills all seven. There is no spare day, so one thing has to go.</p>
+  <p class="col">Both plans arrive in Leh on the 2nd, acclimatise on the 3rd, cross Khardung La to Thoise, ride Turtuk and Thang, take the Shyok valley to Pangong, cross Rezang La and Tsaga La to Hanle, spend a full day on Umling La at 5,798 m, hold the 11th in Leh, and finish at Lamayuru on the 12th. All of that is fixed and identical.</p>
+  <p class="col"><strong>The only question is what happens to one day: Siachen Base Camp, or the ride home through Tso Moriri.</strong> Open both, then say which one you want.</p>
+</section>
+
+<section>
+  <div class="grid2">
+    <div class="slab calm">
+      <h4>Plan 1 &#8212; the Siachen Variant</h4>
+      <ul>
+        <li>A full day from Sumur to <strong>Siachen Base Camp</strong> and the memorial, with Panamik&#8217;s hot springs on the way.</li>
+        <li>Home from Hanle down the Indus through Chumathang. 1,644 km, longest day 250 km, never sleeps above 4,250 m.</li>
+        <li><strong>Costs you</strong> Tso Moriri, Tso Kar and Tanglang La.</li>
+        <li>Two booking changes. Every stay already confirmed stands.</li>
+        <li><a href="./siachen.html">Read the Siachen Variant &#8594;</a></li>
+      </ul>
+    </div>
+    <div class="slab calm">
+      <h4>Plan 2 &#8212; the Tso Moriri Variant</h4>
+      <ul>
+        <li>Pangong a day earlier, then home from Hanle through <strong>Tso Moriri</strong>, <strong>Tso Kar</strong>, Polokongka La and <strong>Tanglang La</strong>.</li>
+        <li>1,646 km, longest day 230 km, four high lakes and seven passes over 4,600 m.</li>
+        <li><strong>Costs you</strong> Siachen and the Nubra arm past Sumur.</li>
+        <li>Three booking changes.</li>
+        <li><a href="./tso-moriri.html">Read the Tso Moriri Variant &#8594;</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="slab">
+    <h4>The short version of the argument</h4>
+    <ul>
+      <li><strong>For Siachen:</strong> access is the whole point. Ordinary visitors are stopped short of Base Camp and never see the glacier. This group is not, and that is attached to a person rather than a place &#8212; it will not be available on a future trip. The lakes will be.</li>
+      <li><strong>For Tso Moriri:</strong> one day buys four places instead of one, including a lake at 4,522 m that plenty of people rate above Pangong, and two more high passes. It is also the gentler shape, with no day over 230 km.</li>
+      <li>Both plans are complete, both are safe, and both finish on Umling La. Nobody gets a worse trip either way.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  Distances are road kilometres and vary a few percent with detours.<br>
+  Permit rules, road status, and Chushul and Umling La access were checked against 2026 sources in late August 2026 &#8212; reconfirm locally in Leh before riding.<br>
+  Altitudes are the commonly cited figures; several passes are signposted higher than they survey.
+</footer>
+</div>
+</body></html>
